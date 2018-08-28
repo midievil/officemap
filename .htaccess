@@ -1,0 +1,17 @@
+php_value short_open_tag 1 
+
+
+AddDefaultCharset utf-8
+RewriteEngine on
+Options +FollowSymlinks
+
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+
+
+RewriteRule ^(.*)$ index.php?URL_REQUESTED=$1 [QSA,L]
+
+# HTID:4796158: DO NOT REMOVE OR MODIFY THIS LINE AND THE LINES BELOW
+php_value display_errors 1
+# DO NOT REMOVE OR MODIFY THIS LINE AND THE LINES ABOVE HTID:4796158:
