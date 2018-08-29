@@ -152,7 +152,7 @@ function onFloorChanged() {
     $('#ddlRoom option').hide();
     $('#ddlRoom option[data-floor="' + floor.Id + '"]').show();
     
-    $("#imgPlan").attr('src', './img/rooms/' + floor.Img + '?v=0.4');
+    $("#imgPlan").attr('src', './img/rooms/' + floor.Img + '?v=0.5');
     var imgUrl = './img/rooms/' + floor.Img;
     onMapLoaded();
 }
