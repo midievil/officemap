@@ -5,9 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
-    <link rel="icon" href="./favicon.ico">
+    <link rel="icon" href="/favicon.ico">
 
-    <title>Product example for Bootstrap</title>
+    <title>MMTR office map</title>
 
     <!-- Bootstrap core CSS -->
     <link href="./dist/css/bootstrap.min.css" rel="stylesheet">
@@ -43,7 +43,7 @@
           <div id='divEmployeesList' class="col-sm-2">
               <input id='tbEmployeesFilter' class="form-control" type="text" placeholder="поиск" onkeyup="filterEmployees();" />
 
-              <div class="form-group form-check" style="text-align: left;">
+              <div class="form-group form-check editable" style="text-align: left;">
                 <input type="checkbox" class="form-check-input" id="cbNotOnMap" onchange="filterNotOnMap();">
                 <label class="form-check-label" for="cbNotOnMap">нет на карте</label>
               </div>
@@ -106,7 +106,7 @@
     <footer class="container py-5">
       <div class="row">
         <div class="col-12 col-md">
-          <small class="d-block mb-4 text-muted">&copy; 2018 Artem Sharypov</small>
+          <small class="d-block mb-4 text-muted">&copy; <a onclick="searchMap(14);" href="#">2018 Artem Sharypov</a></small>
         </div>
         <div class="col-6 col-md" style="display: none;">
           <h5>Features</h5>
