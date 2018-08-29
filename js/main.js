@@ -5,6 +5,9 @@ $(document).ready(function(){
 
     setEditables();
 
+    bindWindowResize();
+    resizeMap();
+
     if(getCookie('remember') == 'true')
         ping();
 
@@ -13,7 +16,7 @@ $(document).ready(function(){
             event.preventDefault();
             return false;
         }
-        });
+    });    
 });
 
 var isLocked = false;
@@ -188,6 +191,7 @@ function drawMap(){
     $('[data-toggle="tooltip"]').tooltip();
 
     drawRooms();
+    resizeMap();
 }
 
 function drawRooms() {
@@ -475,6 +479,18 @@ function searchMap(id) {
     if(typeof map === 'undefined') {
         notFoundMapId = id;
     }
+}
+
+function bindWindowResize(){
+    window.addEventListener("resize", function() {
+        resizeMap();
+    });
+}
+
+function resizeMap() {    
+    var container = document.getElementById('divMainContainer');
+    var newHeight = container.clientWidth * 0.51462621885157; 
+    $('#divMainContainer').css('height', newHeight+'px');
 }
 
 function filterEmployees(){
