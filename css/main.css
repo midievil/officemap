@@ -105,8 +105,8 @@ div.point {
 }
 
 div.point.you {
-  border-color: #000;
-  background-color: #000;
+  border-color: #A03318;
+  background-color: #FF5526;
   width: 16px;
   height: 16px;
   border-radius: 8px;
@@ -145,8 +145,7 @@ div.room {
   position: absolute;
   cursor: pointer;
   font-weight: bold;
-  vertical-align: middle;
-  line-height: 100px;
+  vertical-align: middle;  
   z-index: 1;
 }
 

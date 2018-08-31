@@ -14,7 +14,7 @@
     <link href="./css/main.css" rel="stylesheet">
 
     <!-- Custom styles for this template -->
-    <link href="main.css?v=0.51" rel="stylesheet">
+    <link href="main.css?v=0.57" rel="stylesheet">
   </head>
 
   <body>
@@ -63,7 +63,7 @@
         </div>        
 
         <div class="row">
-            <div class="col-sm-9">
+            <div class="col-sm-8">
               <h4 id="hEmployee"></h4>
               <form>
                   <input type="hidden" id="hidX" />
@@ -79,7 +79,8 @@
                   <div class="form-group row">
                     <label for="ddlRoom" class="col-sm-3 col-form-label">Кабинет</label>
                     <div class="col-sm-9">
-                      <select class="form-control" id="ddlRoom"></select>
+                      <select class="form-control editable" id="ddlRoom"></select>
+                      <input type="text" class="form-control readonly" id="txtRoom" disabled />
                     </div>
                   </div>
                   
@@ -93,7 +94,7 @@
                   <button type="button" class="btn btn-primary editable" onclick="saveEmployee();">Сохранить</button>                  
                 </form>
             </div>
-            <div class="col-sm-3 avatar-container">
+            <div class="col-sm-4 avatar-container">
               <div class="avatar-frame">
                 <img id="imgAvatar" width="100%">
               </div>
@@ -108,44 +109,6 @@
         <div class="col-12 col-md">
           <small class="d-block mb-4 text-muted">&copy; <a onclick="searchMap(14);" href="#">2018 Artem Sharypov</a></small>
         </div>
-        <div class="col-6 col-md" style="display: none;">
-          <h5>Features</h5>
-          <ul class="list-unstyled text-small">
-            <li><a class="text-muted" href="#">Cool stuff</a></li>
-            <li><a class="text-muted" href="#">Random feature</a></li>
-            <li><a class="text-muted" href="#">Team feature</a></li>
-            <li><a class="text-muted" href="#">Stuff for developers</a></li>
-            <li><a class="text-muted" href="#">Another one</a></li>
-            <li><a class="text-muted" href="#">Last time</a></li>
-          </ul>
-        </div>
-        <div class="col-6 col-md" style="display: none;">
-          <h5>Resources</h5>
-          <ul class="list-unstyled text-small">
-            <li><a class="text-muted" href="#">Resource</a></li>
-            <li><a class="text-muted" href="#">Resource name</a></li>
-            <li><a class="text-muted" href="#">Another resource</a></li>
-            <li><a class="text-muted" href="#">Final resource</a></li>
-          </ul>
-        </div>
-        <div class="col-6 col-md" style="display: none;">
-          <h5>Resources</h5>
-          <ul class="list-unstyled text-small">
-            <li><a class="text-muted" href="#">Business</a></li>
-            <li><a class="text-muted" href="#">Education</a></li>
-            <li><a class="text-muted" href="#">Government</a></li>
-            <li><a class="text-muted" href="#">Gaming</a></li>
-          </ul>
-        </div>
-        <div class="col-6 col-md" style="display: none;">
-          <h5>About</h5>
-          <ul class="list-unstyled text-small">
-            <li><a class="text-muted" href="#">Team</a></li>
-            <li><a class="text-muted" href="#">Locations</a></li>
-            <li><a class="text-muted" href="#">Privacy</a></li>
-            <li><a class="text-muted" href="#">Terms</a></li>
-          </ul>
-        </div>
       </div>
     </footer>
 
@@ -157,7 +120,12 @@
     <script src="./dist/js/jquery-3.3.1.min.js"></script>
     <script src="./dist/js/popper.min.js"></script>
     <script src="./dist/js/bootstrap.min.js"></script>    
-    <script src="./js/main.js?v=0.51"></script>
+    <script src="./js/main.js?v=0.57"></script>
+    <script src="./js/api.js?v=0.57"></script>
+    <script src="./js/edit.js?v=0.57"></script>
+    <script src="./js/filter.js?v=0.57"></script>
+    <script src="./js/forms.js?v=0.57"></script>
+    <script src="./js/screen.js?v=0.57"></script>
     <script>
       var avatarsUri = '<?=AVATARS_URI?>';
       var userId = '<?=Authorization::GetUserId()?>';
