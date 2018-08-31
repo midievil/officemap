@@ -23,7 +23,7 @@
     class FloorDB extends BaseInnerDB
     {
         public function GetAllFloors() {
-            $result = mysqli_query($this->connection, "SELECT id, `name` FROM floors");
+            $result = mysqli_query($this->connection, "SELECT id, `name` FROM floors ORDER BY `order`");
             if($result) {
                 $floors = array();
                 while($row = mysqli_fetch_assoc($result)) {
@@ -40,7 +40,7 @@
     class RoomDB extends BaseInnerDB
     {
         public function GetAllRooms() {
-            $result = mysqli_query($this->connection, "SELECT id, `name`, x1, y1, x2, y2, floor_id FROM rooms ORDER BY `name`");
+            $result = mysqli_query($this->connection, "SELECT id, `name`, `description`, x1, y1, x2, y2, floor_id FROM rooms ORDER BY `name`");
             if($result) {
                 $rooms = array();
                 while($row = mysqli_fetch_assoc($result)) {

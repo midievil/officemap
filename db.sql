@@ -23,6 +23,7 @@ CREATE TABLE `employees_map` (
 CREATE TABLE `rooms` (
 `id`  int NOT NULL AUTO_INCREMENT ,
 `name`  varchar(100) NOT NULL ,
+`description`  varchar(100) NOT NULL ,
 `x1`  int NOT NULL ,
 `y1`  int NOT NULL ,
 `x2`  int NOT NULL ,

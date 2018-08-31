@@ -15,6 +15,7 @@
         function __construct($row) {
             $this->Id = $row['id'];
             $this->Name = $row['name'];
+            $this->Description = $row['description'];
             $this->FloorId = $row['floor_id'];
             $this->X1 = $row['x1'];            
             $this->Y1 = $row['y1'];
@@ -24,6 +25,7 @@
 
         public $Id;
         public $Name;
+        public $Description;
         public $FloorId;
         public $X1;
         public $Y1;
