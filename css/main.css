@@ -191,3 +191,30 @@ div.avatar-frame {
   width: 400px;
   margin: 0px auto;
 }
+
+
+
+
+
+
+div.pacman {
+  width: 24px;
+  height: 24px;  
+  position: absolute;
+  top: 67%; 
+  left: 10%;
+  z-index: 100;
+  margin-top: -12px;
+  margin-left: -12px;
+}
+div.pacman img {
+  width: 24px;
+  height: 24px;
+}
+div.points{
+  position: absolute;
+  top: 3%;
+  left: 3%;
+  font-size: 14px;
+  font-weight: bold;
+}

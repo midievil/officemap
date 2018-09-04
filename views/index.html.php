@@ -14,7 +14,7 @@
     <link href="./css/main.css" rel="stylesheet">
 
     <!-- Custom styles for this template -->
-    <link href="main.css?v=0.57" rel="stylesheet">
+    <link href="main.css?v=0.58" rel="stylesheet">
   </head>
 
   <body>
@@ -126,6 +126,7 @@
     <script src="/js/filter.js?v=0.58"></script>
     <script src="/js/forms.js?v=0.58"></script>
     <script src="/js/screen.js?v=0.58"></script>
+    <script src="/js/pacman.js?v=0.58"></script>
     <script>
       var avatarsUri = '<?=AVATARS_URI?>';
       var userId = '<?=Authorization::GetUserId()?>';
