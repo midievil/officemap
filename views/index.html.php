@@ -117,15 +117,15 @@
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
     
-    <script src="./dist/js/jquery-3.3.1.min.js"></script>
-    <script src="./dist/js/popper.min.js"></script>
-    <script src="./dist/js/bootstrap.min.js"></script>    
-    <script src="./js/main.js?v=0.57"></script>
-    <script src="./js/api.js?v=0.57"></script>
-    <script src="./js/edit.js?v=0.57"></script>
-    <script src="./js/filter.js?v=0.57"></script>
-    <script src="./js/forms.js?v=0.57"></script>
-    <script src="./js/screen.js?v=0.57"></script>
+    <script src="/dist/js/jquery-3.3.1.min.js"></script>
+    <script src="/dist/js/popper.min.js"></script>
+    <script src="/dist/js/bootstrap.min.js"></script>    
+    <script src="/js/main.js?v=0.58"></script>
+    <script src="/js/api.js?v=0.58"></script>
+    <script src="/js/edit.js?v=0.58"></script>
+    <script src="/js/filter.js?v=0.58"></script>
+    <script src="/js/forms.js?v=0.58"></script>
+    <script src="/js/screen.js?v=0.58"></script>
     <script>
       var avatarsUri = '<?=AVATARS_URI?>';
       var userId = '<?=Authorization::GetUserId()?>';
