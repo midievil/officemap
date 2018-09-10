@@ -13,3 +13,24 @@ function setEditables(){
         $(".readonly").hide();
     }
 }
+
+function editEmployee(){
+    var employee = {
+        id: $("#ddlEmployee").val(),
+        ip: $("#txtIP").val(),
+        x: $("#hidX").val(),
+        y: $("#hidY").val(),
+        floorId: $("#ddlFloor").val(),
+        roomId: $("#ddlRoom").val()
+    };
+    saveEmployee(employee, function(){
+        isLocked = false;
+            cancelEmployeeEdit();
+            loadMap(false);
+
+            $li = $("#li" + employee.id);
+            $li.removeClass("not-on-map");
+            $li.addClass("on-map");
+            filterNotOnMap();
+    });
+}

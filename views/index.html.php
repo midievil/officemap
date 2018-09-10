@@ -90,7 +90,7 @@
                     </div>
                   </div>
         
-                  <button type="button" class="btn btn-primary editable" onclick="saveEmployee();">Сохранить</button>                  
+                  <button type="button" class="btn btn-primary editable" onclick="editEmployee();">Сохранить</button>                  
                 </form>
             </div>
             <div class="col-sm-4 avatar-container">

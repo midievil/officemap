@@ -2,7 +2,7 @@ $(document).ready(function(){
     loadRooms();
     loadFloors();
     loadEmployees();
-    loadMap();
+    loadMap(true);
 
     setEditables();
 

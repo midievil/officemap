@@ -38,7 +38,10 @@ function loadFloors(){
     });
 }
 
-function loadMap() {
+function loadMap(isInitial) {
+    if(typeof isInitial === 'undefined')
+        isInitial = false;
+
     mapList = null;
     isLocked = true;
     $.ajax({
@@ -48,7 +51,7 @@ function loadMap() {
             mapList = JSON.parse(result);
 
             var me = findMapById(userId);
-            if(typeof me !== 'undefined' && me.FloorId != null && me.FloorId != '') {
+            if(isInitial && typeof me !== 'undefined' && me.FloorId != null && me.FloorId != '') {
                 $("#ddlFloor").val(me.FloorId);
             }
 
@@ -72,29 +75,22 @@ function loadEmployees() {
     });
 }
 
-function saveEmployee() {
+function saveEmployee(employee, onSuccess) {
     isLocked = true;
-    var empId = $("#ddlEmployee").val();
     $.ajax({
         url: '/map',
         method: 'POST',
         data: {
-            employeeId: empId,
-            ip: $("#txtIP").val(),
-            x: $("#hidX").val(),
-            y: $("#hidY").val(),
-            floor: $("#ddlFloor").val(),
-            room: $("#ddlRoom").val()
+            employeeId: employee.id,
+            ip: employee.ip,
+            x: employee.x,
+            y: employee.y,
+            floor: employee.floorId,
+            room: employee.roomId
         },
         success: function(result) {
-            isLocked = false;
-            cancelEmployeeEdit();
-            loadMap();
-
-            $li = $("#li" + empId);
-            $li.removeClass("not-on-map");
-            $li.addClass("on-map");
-            filterNotOnMap();
+            if(typeof onSuccess !== 'undefined')
+                onSuccess();            
         }
     });
 }
