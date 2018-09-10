@@ -41,7 +41,7 @@ function drawMap() {
         return emp.FloorId == floorId;
     });
 
-    $("#imgPlan").attr('src', '/img/rooms/' + floor.Img + '?v=0.58');
+    $("#imgPlan").attr('src', '/img/rooms/' + floor.Img + '?v=' + scriptVersion);
 
     $div = $("#divMainContainer");
 

@@ -11,10 +11,9 @@
 
     <!-- Bootstrap core CSS -->
     <link href="./dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="./css/main.css" rel="stylesheet">
-
+    
     <!-- Custom styles for this template -->
-    <link href="main.css?v=0.58" rel="stylesheet">
+    <link href="/css/main.css?v=<?=$scriptVersion?>" rel="stylesheet">
   </head>
 
   <body>
@@ -107,7 +106,7 @@
     <footer class="container py-5">
       <div class="row">
         <div class="col-12 col-md">
-          <small class="d-block mb-4 text-muted">&copy; <a onclick="searchMap(14);" href="#">2018 Artem Sharypov</a></small>
+          <small class="d-block mb-4 text-muted">&copy; 2018 <a onclick="searchMap(14);" href="#">Artem Sharypov</a></small>
         </div>
       </div>
     </footer>
@@ -120,14 +119,15 @@
     <script src="/dist/js/jquery-3.3.1.min.js"></script>
     <script src="/dist/js/popper.min.js"></script>
     <script src="/dist/js/bootstrap.min.js"></script>    
-    <script src="/js/main.js?v=0.58"></script>
-    <script src="/js/api.js?v=0.58"></script>
-    <script src="/js/edit.js?v=0.58"></script>
-    <script src="/js/filter.js?v=0.58"></script>
-    <script src="/js/forms.js?v=0.58"></script>
-    <script src="/js/screen.js?v=0.58"></script>
-    <script src="/js/pacman.js?v=0.58"></script>
+    <script src="/js/main.js?v=<?=$scriptVersion?>"></script>
+    <script src="/js/api.js?v=<?=$scriptVersion?>"></script>
+    <script src="/js/edit.js?v=<?=$scriptVersion?>"></script>
+    <script src="/js/filter.js?v=<?=$scriptVersion?>"></script>
+    <script src="/js/forms.js?v=<?=$scriptVersion?>"></script>
+    <script src="/js/screen.js?v=<?=$scriptVersion?>"></script>
+    <script src="/js/pacman.js?v=<?=$scriptVersion?>"></script>
     <script>
+      var scriptVersion = "<?=$scriptVersion?>";
       var avatarsUri = '<?=AVATARS_URI?>';
       var userId = '<?=Authorization::GetUserId()?>';
       var userCanEdit = <?=Authorization::CanEdit() ? "true" : "false" ?>;
