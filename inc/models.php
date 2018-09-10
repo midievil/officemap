@@ -61,11 +61,13 @@
             $this->Name = $row['LastName'] . ' ' . $row['FirstName'];
             $this->Ip = $row['UserIp'];
             $this->Avatar = $row['Avatar'];
+            $this->IsProjectManager = $row['IsProjectManager'];
         }
 
         public $Id;
         public $Name;
         public $Ip;
         public $Avatar;
+        public $IsProjectManager;
     }
 ?>

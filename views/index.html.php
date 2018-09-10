@@ -130,6 +130,7 @@
     <script>
       var avatarsUri = '<?=AVATARS_URI?>';
       var userId = '<?=Authorization::GetUserId()?>';
+      var userCanEdit = <?=Authorization::CanEdit() ? "true" : "false" ?>;
     </script>
   </body>
 </html>

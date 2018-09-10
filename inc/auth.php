@@ -19,6 +19,7 @@
                 $db = new EmployeeDB();
                 $emp = $db->GetEmployeeByLoginPassword($login, $password);
                 $_SESSION['user_id'] = $emp->Id;
+                $_SESSION['is_pm'] = $emp->IsProjectManager;
 
                 if(isset($_POST["remember"])) {
                     setcookie('remember', 'true');
@@ -41,8 +42,22 @@
             return $_SESSION['user_id'];
         }
 
-        public function CanEdit() {
-            return isset($_SESSION['user_id']) && in_array($_SESSION['user_id'], array(14, 64, 92, 255));
+        public static function CanEdit() {
+            return Authorization::IsAdmin() || Authorization::IsProjectManager();;
         }
+
+        public static function IsAdmin() {
+            return isset($_SESSION['user_id']) && in_array($_SESSION['user_id'], Authorization::GetAdminIds());
+        }
+
+        public static function IsProjectManager(){
+            return isset($_SESSION['is_pm']) && $_SESSION['is_pm'];
+        }
+
+        private static function GetAdminIds(){
+            return explode(',', ADMIN_IDS);
+        }
+
+        
     }
 ?>

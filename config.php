@@ -14,5 +14,6 @@
 
     define('AD_SERVER', '');
     define('AD_DOMAIN', '');
+    define('ADMIN_IDS', '64,92,255');
     
 ?>

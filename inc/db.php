@@ -106,7 +106,7 @@
 
             $result = mysqli_query($this->connection,
 			"
-                SELECT  e.Id, e.LastName, e.FirstName, e.UserIp, a.Path as Avatar
+                SELECT  e.Id, e.LastName, e.FirstName, e.UserIp, e.IsProjectManager, a.Path as Avatar
                 FROM    employees e 
                 LEFT JOIN avatars a ON a.EmployeeId = e.Id AND a.IsDeleted = 0
                 WHERE   e.IsDismissed = 0 AND e.IsDeleted = 0 AND IsSwitchedOn = 1
@@ -126,9 +126,10 @@
 
         public function GetEmployeeByLoginPassword($login, $password) {
             $result = mysqli_query($this->connection, "
-                SELECT  *
-                FROM    employees
-                WHERE   (Login = '$login' OR Email='$login') AND TRUE");
+                SELECT  e.Id, e.LastName, e.FirstName, e.UserIp, e.IsProjectManager, a.Path as Avatar
+                FROM    employees e
+                LEFT JOIN avatars a ON a.EmployeeId = e.Id AND a.IsDeleted = 0
+                WHERE   (e.Login = '$login' OR e.Email='$login') AND TRUE");
             if($result) {
                 if($row = mysqli_fetch_assoc($result)) {
                     $emp = new Employee($row);
