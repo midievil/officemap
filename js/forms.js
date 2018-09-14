@@ -29,9 +29,10 @@ function buildRoomsFilter(){
         $ddl = $("#ddlRoom");
 
         $ddl.empty();
-        for(var i = 0; i < roomsList.length; i++){
+        for(var i = 0; i < roomsList.length; i++) {
             var room = roomsList[i];
-            $ddl.append('<option value="' + room.Id + '" data-floor="' + room.FloorId + '">' + room.Name + '</option>')
+            if(!room.IsService)
+                $ddl.append('<option value="' + room.Id + '" data-floor="' + room.FloorId + '">' + room.Name + '</option>')
         }
     }
 }

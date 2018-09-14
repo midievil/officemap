@@ -21,6 +21,7 @@
             $this->Y1 = $row['y1'];
             $this->X2 = $row['x2'];
             $this->Y2 = $row['y2'];
+            $this->IsService = $row['is_service'] == 1;
         }
 
         public $Id;
@@ -31,6 +32,7 @@
         public $Y1;
         public $X2;
         public $Y2;
+        public $IsService;
     }
 
     class EmployeeMap

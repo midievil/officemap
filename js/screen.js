@@ -27,7 +27,7 @@ function drawRooms() {
                 room.Name
                 : '<div class="name">' + room.Name + '</div><div class="desc">' + room.Description + '</div>';
 
-            var roomHtml = '<div class="room" data-room-id="' + room.Id + '" style="' + style + '" onclick="roomClicked(event);">' + roomDescription + '</div>'
+            var roomHtml = '<div class="room ' + (room.IsService ? 'service' : '') + '" data-room-id="' + room.Id + '" style="' + style + '" onclick="roomClicked(event);">' + roomDescription + '</div>'
             $div.append(roomHtml);
         }
     }
