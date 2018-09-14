@@ -147,6 +147,7 @@ div.room {
   font-weight: bold;
   vertical-align: middle;  
   z-index: 1;
+  line-height: 75px;
 }
 
 div.room div.name {

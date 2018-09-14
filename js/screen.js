@@ -23,8 +23,11 @@ function drawRooms() {
         var room = roomsList[i];
         if(room.FloorId == currentFloorId && room.X1 > 0 && room.X2 > 0 && room.Y1 > 0 && room.Y2 > 0) {
             var style = 'left: ' + room.X1 + '%; top: ' + room.Y1 + '%; width: ' + (room.X2 - room.X1) + '%; height: ' + (room.Y2 - room.Y1) + '%';
- 
-            var roomHtml = '<div class="room" data-room-id="' + room.Id + '" style="' + style + '" onclick="roomClicked(event);"><div class="name">' + room.Name + '</div><div class="desc">' + room.Description + '</div></div>'
+            var roomDescription = canEdit() ? 
+                room.Name
+                : '<div class="name">' + room.Name + '</div><div class="desc">' + room.Description + '</div>';
+
+            var roomHtml = '<div class="room" data-room-id="' + room.Id + '" style="' + style + '" onclick="roomClicked(event);">' + roomDescription + '</div>'
             $div.append(roomHtml);
         }
     }
@@ -50,7 +53,7 @@ function drawMap() {
         var employee = findEmployeeById(map.Id);
         
         if(typeof employee != 'undefined') {
-            var tooltip = 'data-toggle="tooltip" data-html="true" data-placement="top" title="' + employee.Name + '<br>Кабинет: ' + map.RoomName + (canEdit() ? ('<br>IP: ' + map.IP) : '') + '"';
+            var tooltip = 'data-toggle="tooltip" data-html="true" data-placement="top" title="' + employee.Name + '<br>Кабинет: ' + map.RoomName + (canEdit() ? ('<br>IP: ' + map.IP + '<br>ID: ' + map.Id) : '') + '"';
             var drag = canEdit() ? 'draggable="true" ondragstart="drag(event)" ' : '';
             $div.append('<div data-id="' + map.Id + '" class="point ' + (map.Id == userId ? 'you' : '') + '" data-x="' + map.X + '" data-y="' + map.Y + '" style="left: ' + map.X + '%; top: ' + map.Y + '%" id="point' + map.Id + '" onclick="pointClicked(' + map.Id + ', event)" ' + drag + tooltip + '></div>');
         }
