@@ -20,7 +20,7 @@ function loadRooms(){
         url: '/rooms',
         success: function(result){
             roomsList = JSON.parse(result);
-            buildRoomsFilter();            
+            onMetaLoaded();
         }
     });
 }
@@ -33,7 +33,7 @@ function loadFloors(){
         url: '/floors',
         success: function(result){
             floorsList = JSON.parse(result);
-            buildFloorsFilter();            
+            onMetaLoaded();           
         }
     });
 }
@@ -49,14 +49,7 @@ function loadMap(isInitial) {
         method: 'GET',
         success: function(result){
             mapList = JSON.parse(result);
-
-            var me = findMapById(userId);
-            if(isInitial && typeof me !== 'undefined' && me.FloorId != null && me.FloorId != '') {
-                $("#ddlFloor").val(me.FloorId);
-            }
-
-            bindEmployeesSelector();
-            onMapLoaded();
+            onMetaLoaded(isInitial);
         }
     });
 }
@@ -69,8 +62,7 @@ function loadEmployees() {
         method: 'GET',
         success: function(result){
             employeesList = JSON.parse(result);
-            bindEmployeesSelector();
-            onMapLoaded();
+            onMetaLoaded();
         }
     });
 }

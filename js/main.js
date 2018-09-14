@@ -28,7 +28,6 @@ function getCurrentFloorId() {
 }
 
 function onFloorChanged() {
-
     if(floorsList == null)
         return;
 
@@ -44,14 +43,8 @@ function onFloorChanged() {
     
     $("#imgPlan").attr('src', '/img/rooms/' + floor.Img + '?v=' + scriptVersion);
     var imgUrl = '/img/rooms/' + floor.Img;
-    onMapLoaded();
-}
-
-function onMapLoaded(){
-    if(roomsList != null && employeesList != null && mapList != null && floorsList != null) {
-        isLocked = false;
-        drawMap();
-    }
+    
+    drawMap();
 }
 
 function roomClicked(ev){

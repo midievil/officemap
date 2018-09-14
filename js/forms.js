@@ -33,9 +33,6 @@ function buildRoomsFilter(){
             var room = roomsList[i];
             $ddl.append('<option value="' + room.Id + '" data-floor="' + room.FloorId + '">' + room.Name + '</option>')
         }
-
-        onFloorChanged();
-        onMapLoaded();
     }
 }
 
@@ -48,9 +45,31 @@ function buildFloorsFilter(){
             var floor = floorsList[i];
             $ddl.append('<option value="' + floor.Id + '">' + floor.Name + '</option>')
         }
+    }
+}
 
-        onFloorChanged();
-        onMapLoaded();
+function onMetaLoaded(isInitial){
+
+    if(typeof isInitial === "undefined")
+        isInitial = false;
+
+    if(roomsList != null && floorsList != null) {
+        buildFloorsFilter();
+        buildRoomsFilter();
+        
+        if(employeesList != null && mapList != null)
+        {
+            isLocked = false;
+
+            bindEmployeesSelector();
+
+            var me = findMapById(userId);
+            if(isInitial && typeof me !== 'undefined' && me.FloorId != null && me.FloorId != '') {
+                $("#ddlFloor").val(me.FloorId);
+            }
+            
+            onFloorChanged();
+        }
     }
 }
 
