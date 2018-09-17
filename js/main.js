@@ -150,6 +150,8 @@ function planClicked(ev) {
     var newY = ev.offsetY;
 
     if(ev.target.classList[0] == 'room'){
+        if(ev.target.classList[1] == 'service')
+            return;
         newX += ev.target.offsetLeft;
         newY += ev.target.offsetTop;
     }
