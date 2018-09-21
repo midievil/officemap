@@ -78,16 +78,18 @@ function bindEmployeeForm(map, employee) {
     $point = $("div.point.selected");
     
     $("#ddlEmployee").val(employee.Id);
-    $("#hidX").val($point.attr('data-x'));
-    $("#hidY").val($point.attr('data-y'));
     $("#hEmployee").text(employee.Name);
+    $("#aSkype").text(employee.Skype);
+    $("#aSkype").attr('href', 'skype:' + employee.Skype + '?chat');
+
     $("#txtIP").val(map.IP);
     $("#ddlRoom").val(map.RoomId);
-
     $("#txtRoom").val(map.RoomName);
 
-    $("#divSelectEmployee").hide()
+    $("#hidX").val($point.attr('data-x'));
+    $("#hidY").val($point.attr('data-y'));
 
+    $("#divSelectEmployee").hide();
     $("#divEmployeeDetails").show();
 
     bindAvatar(employee);

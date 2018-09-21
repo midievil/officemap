@@ -89,6 +89,13 @@
                       <input type="text" class="form-control" id="txtIP" placeholder="192.168.x.x">
                     </div>
                   </div>
+
+                  <div class="form-group row skype">
+                    <label for="txtIP" class="col-sm-3 col-form-label">Skype</label>
+                    <div class="col-sm-9">
+                      <a id="aSkype"></a>
+                    </div>
+                  </div>
         
                   <button type="button" class="btn btn-primary editable" onclick="editEmployee();">Сохранить</button>                  
                 </form>

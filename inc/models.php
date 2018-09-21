@@ -64,6 +64,7 @@
             $this->Ip = $row['UserIp'];
             $this->Avatar = $row['Avatar'];
             $this->IsProjectManager = $row['IsProjectManager'];
+            $this->Skype = $row['Skype'];
         }
 
         public $Id;
@@ -71,5 +72,6 @@
         public $Ip;
         public $Avatar;
         public $IsProjectManager;
+        public $Skype;
     }
 ?>
