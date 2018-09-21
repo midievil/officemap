@@ -102,13 +102,18 @@
             </div>
             <div class="col-sm-4 avatar-container">
               <div class="avatar-frame">
-                <img id="imgAvatar" width="100%">
+                <img id="imgAvatar" width="100%" onclick="enlargePhoto();">
               </div>
             </div>
         </div>
       </div>
     </div>
 
+    <div class="photo-preview-bg" onclick="closePhoto();">
+      <div class="photo-preview">
+        <img />
+      </div>  
+    </div>
     
     <footer class="container py-5">
       <div class="row">

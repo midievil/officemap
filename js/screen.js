@@ -102,6 +102,15 @@ function animatePoint(employeeId) {
 }
 var blinkTimeout = null;
 
+function enlargePhoto(){
+    $(".photo-preview img").attr("src", $("#imgAvatar").attr("src"));
+    $(".photo-preview-bg").show();
+}
+
+function closePhoto(){
+    $(".photo-preview-bg").hide();
+}
+
 function getClickXPercent(x){
     var container = document.getElementById("divMainContainer");
     var totalWidth = container.clientWidth;
