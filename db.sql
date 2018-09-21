@@ -29,5 +29,6 @@ CREATE TABLE `rooms` (
 `x2`  int NOT NULL ,
 `y2`  int NOT NULL ,
 `floor_id` int(11) NOT NULL,
+`room_type` int(1) NOT NULL DEFAULT 1
 PRIMARY KEY (`id`));
 

@@ -31,7 +31,7 @@ function buildRoomsFilter(){
         $ddl.empty();
         for(var i = 0; i < roomsList.length; i++) {
             var room = roomsList[i];
-            if(!room.IsService)
+            if(room.RoomType == "Working")
                 $ddl.append('<option value="' + room.Id + '" data-floor="' + room.FloorId + '">' + room.Name + '</option>')
         }
     }

@@ -21,13 +21,13 @@ function drawRooms() {
 
     for(var i = 0; i < roomsList.length; i++) {
         var room = roomsList[i];
-        if(room.FloorId == currentFloorId && room.X1 > 0 && room.X2 > 0 && room.Y1 > 0 && room.Y2 > 0) {
+        if(room.FloorId == currentFloorId && (room.RoomType == 'Outage' || (room.X1 > 0 && room.X2 > 0 && room.Y1 > 0 && room.Y2 > 0))) {
             var style = 'left: ' + room.X1 + '%; top: ' + room.Y1 + '%; width: ' + (room.X2 - room.X1) + '%; height: ' + (room.Y2 - room.Y1) + '%';
             var roomDescription = canEdit() ? 
                 room.Name
                 : '<div class="name">' + room.Name + '</div><div class="desc">' + room.Description + '</div>';
 
-            var roomHtml = '<div class="room ' + (room.IsService ? 'service' : '') + '" data-room-id="' + room.Id + '" style="' + style + '" onclick="roomClicked(event);">' + roomDescription + '</div>'
+            var roomHtml = '<div class="room ' + room.RoomType.toLowerCase() + '" data-room-id="' + room.Id + '" style="' + style + '" onclick="roomClicked(event);">' + roomDescription + '</div>'
             $div.append(roomHtml);
         }
     }

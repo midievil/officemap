@@ -103,6 +103,8 @@ function drop(ev) {
     var newY = ev.offsetY;
 
     if(ev.target.classList[0] == 'room'){
+        if(ev.target.classList[1] != 'working')
+            return;
         newX += ev.target.offsetLeft;
         newY += ev.target.offsetTop;
     }
@@ -150,7 +152,7 @@ function planClicked(ev) {
     var newY = ev.offsetY;
 
     if(ev.target.classList[0] == 'room'){
-        if(ev.target.classList[1] == 'service')
+        if(ev.target.classList[1] != 'working')
             return;
         newX += ev.target.offsetLeft;
         newY += ev.target.offsetTop;

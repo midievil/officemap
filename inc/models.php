@@ -1,4 +1,6 @@
 <?php
+    require_once('inc/enums.php');
+
     class Floor {
         function __construct($row) {
             $this->Id = $row['id'];
@@ -21,7 +23,7 @@
             $this->Y1 = $row['y1'];
             $this->X2 = $row['x2'];
             $this->Y2 = $row['y2'];
-            $this->IsService = $row['is_service'] == 1;
+            $this->RoomType = Enums::$RoomTypes[$row['room_type']];
         }
 
         public $Id;
@@ -32,7 +34,7 @@
         public $Y1;
         public $X2;
         public $Y2;
-        public $IsService;
+        public $RoomType;
     }
 
     class EmployeeMap

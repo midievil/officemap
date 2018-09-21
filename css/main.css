@@ -154,6 +154,12 @@ div.room.service {
   background-color: rgba(0, 0, 150, 0.2);
 }
 
+div.room.outage {
+  background-color: transparent;
+  color: transparent;
+  border: 0px;  
+}
+
 div.room div.name {
   margin-top: 30px;
   font-size: 14px;
@@ -189,6 +195,7 @@ div.avatar-frame {
   border: 1px solid #999;
   border-radius: 3px;
   padding: 2px;
+  cursor: pointer;
 }
 
 
@@ -246,5 +253,5 @@ div.points{
 
 .photo-preview img {
   max-width: 80%;
-  max-height: 80%;
+  max-height: 80%;  
 }
