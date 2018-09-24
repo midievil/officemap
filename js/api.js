@@ -20,7 +20,7 @@ function loadRooms(){
         url: '/rooms',
         success: function(result){
             roomsList = JSON.parse(result);
-            onMetaLoaded();
+            onMetaLoaded(true);
         }
     });
 }
@@ -33,7 +33,7 @@ function loadFloors(){
         url: '/floors',
         success: function(result){
             floorsList = JSON.parse(result);
-            onMetaLoaded();           
+            onMetaLoaded(true);           
         }
     });
 }
@@ -62,7 +62,7 @@ function loadEmployees() {
         method: 'GET',
         success: function(result){
             employeesList = JSON.parse(result);
-            onMetaLoaded();
+            onMetaLoaded(true);
         }
     });
 }
