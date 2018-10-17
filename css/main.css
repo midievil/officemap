@@ -150,7 +150,7 @@ div.room {
   line-height: 75px;
 }
 
-div.room.service {
+div.room.service, div.room.meeting {
   background-color: rgba(0, 0, 150, 0.2);
 }
 

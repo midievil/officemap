@@ -4,7 +4,8 @@
         public static $RoomTypes = array(
             0 => "Outage",
             1 => "Working",
-            2 => "Service"
+            2 => "Service",
+            3 => "Meeting"
         );
     }
 ?>

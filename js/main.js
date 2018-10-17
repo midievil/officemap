@@ -102,13 +102,15 @@ function drop(ev) {
     var newX = ev.offsetX;
     var newY = ev.offsetY;
 
-    if(ev.target.classList[0] == 'room'){
-        if(ev.target.classList[1] != 'working')
-            return;
-        newX += ev.target.offsetLeft;
-        newY += ev.target.offsetTop;
-    }
+    if(ev.target.classList[0] != 'room')
+        return;
 
+    if(ev.target.classList[1] != 'working')
+        return;
+        
+    newX += ev.target.offsetLeft;
+    newY += ev.target.offsetTop;
+    
     var newXPercent = getClickXPercent(newX);
     var newYPercent = getClickYPercent(newY);
 
@@ -151,13 +153,15 @@ function planClicked(ev) {
     var newX = ev.offsetX;
     var newY = ev.offsetY;
 
-    if(ev.target.classList[0] == 'room'){
-        if(ev.target.classList[1] != 'working')
-            return;
-        newX += ev.target.offsetLeft;
-        newY += ev.target.offsetTop;
-    }
+    if(ev.target.classList[0] != 'room')
+        return;
 
+    if(ev.target.classList[1] != 'working')
+        return;
+        
+    newX += ev.target.offsetLeft;
+    newY += ev.target.offsetTop;
+    
 
     var newXPercent = getClickXPercent(newX);
     var newYPercent = getClickYPercent(newY);
