@@ -36,6 +36,10 @@
         </div>
         <div class="row">
           <div id='divMainContainer' class="position-relative col-sm-10" ondrop="drop(event)" ondragover="allowDrop(event)" onclick='planClicked(event);'>
+              <div class="logo">
+                <img src="/img/logo.png"><br>
+                <h2 class="room-name"></h2>
+              </div>
               <img id='imgPlan' />
           </div>
 

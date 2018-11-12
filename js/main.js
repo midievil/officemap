@@ -41,6 +41,7 @@ function onFloorChanged() {
     $('#ddlRoom option').hide();
     $('#ddlRoom option[data-floor="' + floor.Id + '"]').show();
     
+    $(".room-name").text(floor.Name);
     $("#imgPlan").attr('src', '/img/rooms/' + floor.Img + '?v=' + scriptVersion);
     var imgUrl = '/img/rooms/' + floor.Img;
     

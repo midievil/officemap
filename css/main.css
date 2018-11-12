@@ -254,6 +254,17 @@ div.points{
 .photo-preview img {
   max-width: 80%;
   max-height: 80%;  
+}
+
+div.logo{
+  position: absolute;
+  left: 35%;
+  top: 15%;
+}
+
+.room-name{
+  color: #606060;
+}
 
 #ulEmployees li.role5 {
   
