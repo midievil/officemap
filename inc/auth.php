@@ -19,7 +19,7 @@
                 $db = new EmployeeDB();
                 $emp = $db->GetEmployeeByLoginPassword($login, $password);
                 $_SESSION['user_id'] = $emp->Id;
-                $_SESSION['is_pm'] = $emp->IsProjectManager;
+                $_SESSION['is_pm'] = $emp->IsProjectManager && $emp->KindOfActivityId == 5;
 
                 if(isset($_POST["remember"])) {
                     setcookie('remember', 'true');

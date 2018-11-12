@@ -18,7 +18,7 @@ function bindEmployeesSelector() {
         });
         var mapClass = mapEntry == null ? "not-on-map" : "on-map";
 
-        $ul.append('<li id="li' + employee.Id + '" class="list-group-item emp' + employee.Id + ' ' + mapClass + '" onclick="searchMap(' + employee.Id + ');" >' + employee.Name + '</li>');
+        $ul.append('<li id="li' + employee.Id + '" class="list-group-item emp' + employee.Id + ' ' + mapClass + ' role' + employee.KindOfActivityId + '" onclick="searchMap(' + employee.Id + ');" >' + employee.Name + '</li>');
     }
 
     filterNotOnMap();
