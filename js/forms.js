@@ -41,11 +41,16 @@ function buildFloorsFilter(){
     if(floorsList != null){
         $ddl = $("#ddlFloor");
 
+        var oldValue = $ddl.val();
+
         $ddl.empty();
         for(var i = 0; i < floorsList.length; i++){
             var floor = floorsList[i];
             $ddl.append('<option value="' + floor.Id + '">' + floor.Name + '</option>')
         }
+
+        if(oldValue != '')
+            $ddl.val(oldValue);
     }
 }
 
@@ -67,6 +72,9 @@ function onMetaLoaded(isInitial){
             var me = findMapById(userId);
             if(isInitial && typeof me !== 'undefined' && me.FloorId != null && me.FloorId != '') {
                 $("#ddlFloor").val(me.FloorId);
+            } else {                
+                var floorId = $("#ddlFloor option:first-child").attr('value');
+                $("#ddlFloor").val(floorId);
             }
             
             onFloorChanged();
