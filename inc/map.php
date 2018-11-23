@@ -3,7 +3,7 @@
     require_once('models.php');
     require_once('inc/db.php');
 
-    $method = $_SERVER['REQUEST_METHOD'];
+    $method = $_SERVER['REQUEST_METHOD'];    
 
     switch ($method){
         case 'GET':
@@ -12,6 +12,10 @@
 
         case 'POST':
             post();
+            return;
+
+        case 'DELETE':
+            delete();
             return;
     }
 
@@ -45,6 +49,13 @@
             $db->UpdateEmployee($_POST['employeeId'], $_POST['ip'], $_POST['x'], $_POST['y'], $_POST['floor'], $_POST['room']);
         }
         echo "ok";
+    }
+
+    function delete(){
+        $id =  str_ireplace(BASE_URI.'map/', '', ($_SERVER[REQUEST_URI]));
+        $db = new MapDB();
+        $db->DeleteEmployeeFromMap($id);
+        die;
     }
 
     

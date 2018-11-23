@@ -101,7 +101,8 @@
                     </div>
                   </div>
         
-                  <button type="button" class="btn btn-primary editable" onclick="editEmployee();">Сохранить</button>                  
+                  <button type="button" class="btn btn-primary editable" onclick="editEmployee();">Сохранить</button>
+                  <button type="button" class="btn btn-danger editable" onclick="deleteEmployeeFromMap();">Убрать с карты</button>
                 </form>
             </div>
             <div class="col-sm-4 avatar-container">

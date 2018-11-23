@@ -82,7 +82,18 @@ function saveEmployee(employee, onSuccess) {
         },
         success: function(result) {
             if(typeof onSuccess !== 'undefined')
-                onSuccess();            
+                onSuccess();
+        }
+    });
+}
+
+function deleteEmployee(id, onSuccess){
+    $.ajax({
+        url: '/map/' + id,
+        method: 'DELETE',
+        success: function(result) {
+            if(typeof onSuccess !== 'undefined')
+                onSuccess();
         }
     });
 }

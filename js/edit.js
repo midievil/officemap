@@ -34,3 +34,15 @@ function editEmployee(){
             filterNotOnMap();
     });
 }
+
+function deleteEmployeeFromMap(){
+    var id = $("#ddlEmployee").val();
+    deleteEmployee(id, function(){
+        loadMap(false);
+        
+        $li = $("#li" + id);
+        $li.removeClass("on-map");
+        $li.addClass("not-on-map");
+        filterNotOnMap();
+    });
+}

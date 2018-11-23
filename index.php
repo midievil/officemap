@@ -6,10 +6,16 @@
     require_once('config.php');
     require_once('inc/auth.php');    
 
-    $scriptVersion = '0.75';
+    $scriptVersion = '0.8';
 
     $queryString = strtolower($_SERVER['REQUEST_URI']);
-    $queryString = str_replace(BASE_URI, '', $queryString);
+    if(stripos($queryString, BASE_URI, 0) === 0)
+        $queryString = substr($queryString, strlen(BASE_URI));
+
+    if(stripos($queryString, '/') !== false){
+        $parts = explode('/', $queryString);
+        $queryString = $parts[0];
+    }
 
     $auth = new Authorization();
 

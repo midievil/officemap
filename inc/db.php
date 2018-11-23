@@ -98,6 +98,12 @@
             );
             return mysqli_affected_rows($this->connection) > 0;
         }
+
+        public function DeleteEmployeeFromMap($employeeId)
+        {
+            mysqli_query($this->connection, "DELETE FROM employees_map WHERE employee_id=$employeeId");
+            return mysqli_affected_rows($this->connection) > 0;
+        }
     }
 
     class EmployeeDB extends BaseExternalDB
