@@ -125,6 +125,10 @@ function drop(ev) {
 
     pointClicked($draggingPoint.attr('data-id'));
 
+    var roomId = ev.target.attributes.getNamedItem("data-room-id").value;
+    if(typeof roomId !== "undefined")
+        $("#ddlRoom").val(roomId);
+
     draggingPointId = null;
 }
 
