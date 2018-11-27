@@ -59,7 +59,8 @@
         public function GetAllEmployees() {
             $result = mysqli_query($this->connection, "SELECT m.id, m.employee_id, m.ip, m.x, m.y, m.floor_id, m.room_id, IFNULL(r.name, '') as room_name
             FROM employees_map m
-            LEFT JOIN rooms r on r.id = m.room_id");
+            LEFT JOIN rooms r on r.id = m.room_id
+            ORDER BY IFNULL(r.Name, '')");
             if($result) {
                 $employees = array();
                 while($row = mysqli_fetch_assoc($result)) {
@@ -140,7 +141,7 @@
                 if($row = mysqli_fetch_assoc($result)) {
                     $emp = new Employee($row);
                     return $emp;
-                }                
+                }
             }
 
             return null;          

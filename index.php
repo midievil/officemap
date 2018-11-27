@@ -42,6 +42,7 @@
         case 'rooms':
         case 'employees':
         case 'map':
+        case 'export':
             require_once('inc/' . $queryString . '.php');            
             return;
 
