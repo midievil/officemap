@@ -118,6 +118,9 @@ function bindAddEmployeeForm() {
     else
         $("#hEmployee").text('Добавить на карту');
 
+    $("#aSkype").text('');
+    $("#aSkype").removeAttr('href');
+
     $("#spanCoord").text((Math.round(x * 100) / 100) + ',' + (Math.round(y * 100) / 100))
 
     var room = findRoomByCoordinates(x, y);
