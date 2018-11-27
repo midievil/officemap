@@ -114,9 +114,11 @@ function bindAddEmployeeForm() {
     $("#hidY").val(y);
     $("#txtIP").val('');
     if(canEdit())
-        $("#hEmployee").text('Добавить на карту (' + x + ',' + y + ')');
+        $("#hEmployee").text('Добавить на карту');  // (' + x + ',' + y + ')');
     else
         $("#hEmployee").text('Добавить на карту');
+
+    $("#spanCoord").text((Math.round(x * 100) / 100) + ',' + (Math.round(y * 100) / 100))
 
     var room = findRoomByCoordinates(x, y);
     if(typeof room != 'undefined')

@@ -269,3 +269,8 @@ div.logo{
 #ulEmployees li.role5 {
   
 }
+
+#spanCoord{
+  display: inline;
+  color: transparent;
+}

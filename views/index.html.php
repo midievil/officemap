@@ -67,7 +67,7 @@
 
         <div class="row">
             <div class="col-sm-8">
-              <h4 id="hEmployee"></h4>
+              <h4 id="hEmployee"></h4><span id="spanCoord"></span>
               <form>
                   <input type="hidden" id="hidX" />
                   <input type="hidden" id="hidY" />
