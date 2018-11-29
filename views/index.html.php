@@ -21,11 +21,24 @@
     <nav class="site-header sticky-top py-1">
       <div class="container d-flex flex-column flex-md-row justify-content-between">
           <a class="navbar-brand" href="#">#MMTRMap</a>
-        <a class="py-2 d-none d-md-inline-block" href="#"></a>
-        <a class="py-2 d-none d-md-inline-block" href="#"></a>
-        <a class="py-2 d-none d-md-inline-block" href="#"></a>
-        <a class="py-2 d-none d-md-inline-block" href="#"></a>
-        <a class="py-2 d-none d-md-inline-block" href="#"></a>
+
+          <div class="navbar-collapse" id="navbarNavDropdown">
+            <ul class="navbar-nav">
+              <? if(Authorization::CanEdit()) { ?>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  Печать
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                  <a class="dropdown-item" onclick='printEmployeesList()'>Список сотрудников</a>
+                  <a class="dropdown-item" onclick='printMap()'>Карта</a>                  
+                </div>
+              </li>
+              <? } ?>
+            </ul>
+          </div>
+
+        
         <a class="py-2 d-none d-md-inline-block" href="<?=BASE_URI?>logout">Выход</a>
       </div>
     </nav>
@@ -142,6 +155,7 @@
     <script src="/js/filter.js?v=<?=$scriptVersion?>"></script>
     <script src="/js/forms.js?v=<?=$scriptVersion?>"></script>
     <script src="/js/screen.js?v=<?=$scriptVersion?>"></script>
+    <script src="/js/print.js?v=<?=$scriptVersion?>"></script>
     <script src="/js/pacman.js?v=<?=$scriptVersion?>"></script>
     <script>
       var scriptVersion = "<?=$scriptVersion?>";

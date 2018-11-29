@@ -55,7 +55,12 @@ function drawMap() {
         if(typeof employee != 'undefined') {
             var tooltip = 'data-toggle="tooltip" data-html="true" data-placement="top" title="' + employee.Name + '<br>Кабинет: ' + map.RoomName + (canEdit() ? ('<br>IP: ' + map.IP + '<br>ID: ' + map.Id) : '') + '"';
             var drag = canEdit() ? 'draggable="true" ondragstart="drag(event)" ' : '';
-            $div.append('<div data-id="' + map.Id + '" class="point ' + (map.Id == userId ? 'you' : '') + '" data-x="' + map.X + '" data-y="' + map.Y + '" style="left: ' + map.X + '%; top: ' + map.Y + '%" id="point' + map.Id + '" onclick="pointClicked(' + map.Id + ', event)" ' + drag + tooltip + '></div>');
+
+            var html = '<div data-id="' + map.Id + '" class="point ' + (map.Id == userId ? 'you' : '') + '" data-x="' + map.X + '" data-y="' + map.Y + '" style="left: ' + map.X + '%; top: ' + map.Y + '%" id="point' + map.Id + '" onclick="pointClicked(' + map.Id + ', event)" ' + drag + tooltip + '></div>';
+            if(canEdit()){
+                html += '<span class="point-name" style="left: ' + (map.X + 1) + '%; top: ' + map.Y + '%">' + employee.Name + '</span>';
+            }
+            $div.append(html);
         }
     }
 
