@@ -93,8 +93,8 @@
 
         public function AddEmployee($id, $ip, $x, $y, $floorId, $roomId)
         {
-            mysqli_query($this->connection, "INSERT INTO employees_map (employee_id, ip, room_x, room_y, floor_id, room_id) 
-                VALUES ($id, '$ip', $x, $y, $floorId, $roomId);"
+            mysqli_query($this->connection, "INSERT INTO employees_map (employee_id, ip, x, y, room_x, room_y, floor_id, room_id) 
+                VALUES ($id, '$ip', 0, 0, $x, $y, $floorId, $roomId);"
             );
             return mysqli_affected_rows($this->connection) > 0;                
         }
