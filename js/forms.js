@@ -70,12 +70,14 @@ function onMetaLoaded(isInitial){
             bindEmployeesSelector();
 
             var me = findMapById(userId);
-            if(isInitial && typeof me !== 'undefined' && me.FloorId != null && me.FloorId != '') {
-                $("#ddlFloor").val(me.FloorId);
-            } else {                
-                var floorId = $("#ddlFloor option:first-child").attr('value');
-                $("#ddlFloor").val(floorId);
-            }
+            if(isInitial){
+                if(typeof me !== 'undefined' && me.FloorId != null && me.FloorId != '') {
+                    $("#ddlFloor").val(me.FloorId);
+                } else {                
+                    var floorId = $("#ddlFloor option:first-child").attr('value');
+                    $("#ddlFloor").val(floorId);
+                }    
+            }            
             
             onFloorChanged();
         }

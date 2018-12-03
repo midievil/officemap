@@ -6,7 +6,7 @@
     require_once('config.php');
     require_once('inc/auth.php');    
 
-    $scriptVersion = '0.9';
+    $scriptVersion = '0.91';
 
     $queryString = strtolower($_SERVER['REQUEST_URI']);
     if(stripos($queryString, BASE_URI, 0) === 0)
