@@ -100,32 +100,31 @@ function drop(ev) {
     //var data = ev.dataTransfer.getData("text");
     //ev.target.appendChild(document.getElementById(data));
 
-    var newX = ev.offsetX;
-    var newY = ev.offsetY;
-
     if(ev.target.classList[0] != 'room')
         return;
 
     if(ev.target.classList[1] != 'working')
         return;
         
-    newX += ev.target.offsetLeft;
-    newY += ev.target.offsetTop;
     
-    var newXPercent = getClickXPercent(newX);
-    var newYPercent = getClickYPercent(newY);
+    var xPercent = ev.offsetX / ev.target.clientWidth * 100;
+    var yPercent = ev.offsetY / ev.target.clientHeight * 100;
 
     $draggingPoint = $("#" + draggingPointId);
     $draggingPoint.css({ 
-        left: newXPercent+'%',
-        top: newYPercent+'%',
+        left: xPercent+'%',
+        top: yPercent+'%',
     });
-    $draggingPoint.attr('data-x', newXPercent);
-    $draggingPoint.attr('data-y', newYPercent);
+    $draggingPoint.attr('data-x', xPercent);
+    $draggingPoint.attr('data-y', yPercent);
 
     pointClicked($draggingPoint.attr('data-id'));
 
     var roomId = ev.target.attributes.getNamedItem("data-room-id").value;
+    $room = $("div[data-room-id='" + roomId + "']");
+
+    $draggingPoint.appendTo($room);
+
     if(typeof roomId !== "undefined")
         $("#ddlRoom").val(roomId);
 
@@ -155,23 +154,17 @@ function planClicked(ev) {
     if(isLocked)
         return;
 
-    var newX = ev.offsetX;
-    var newY = ev.offsetY;
-
     if(ev.target.classList[0] != 'room')
         return;
 
     if(ev.target.classList[1] != 'working')
         return;
-        
-    newX += ev.target.offsetLeft;
-    newY += ev.target.offsetTop;
     
-
-    var newXPercent = getClickXPercent(newX);
-    var newYPercent = getClickYPercent(newY);
-
-    addNewPoint(newXPercent, newYPercent);    
+    var roomId = ev.target.attributes.getNamedItem("data-room-id").value;
+    var xPercent = ev.offsetX / ev.target.clientWidth * 100;
+    var yPercent = ev.offsetY / ev.target.clientHeight * 100;
+        
+    addNewPoint(roomId, xPercent, yPercent);
 }
 
 function newPointClicked(ev) {

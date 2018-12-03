@@ -44,6 +44,8 @@
             $this->IP = $row['ip'];
             $this->X = $row['x'];
             $this->Y = $row['y'];
+            $this->RoomX = $row['room_x'];
+            $this->RoomY = $row['room_y'];
             $this->FloorId = $row['floor_id'];
             $this->RoomId = $row['room_id'];
             $this->RoomName = $row['room_name'];

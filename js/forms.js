@@ -125,12 +125,6 @@ function bindAddEmployeeForm() {
 
     $("#spanCoord").text((Math.round(x * 100) / 100) + ',' + (Math.round(y * 100) / 100))
 
-    var room = findRoomByCoordinates(x, y);
-    if(typeof room != 'undefined')
-        $("#ddlRoom").val(room.Id);
-    else
-        $("#ddlRoom").val('');
-
     $("#divSelectEmployee").show()
 
     $("#divEmployeeDetails").show();

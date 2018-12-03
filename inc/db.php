@@ -61,10 +61,13 @@
     class MapDB extends BaseInnerDB
     {
         public function GetAllEmployees() {
-            $result = mysqli_query($this->connection, "SELECT m.id, m.employee_id, m.ip, m.x, m.y, m.floor_id, m.room_id, IFNULL(r.name, '') as room_name
-            FROM employees_map m
-            LEFT JOIN rooms r on r.id = m.room_id
-            ORDER BY IFNULL(r.Name, '')");
+            $result = mysqli_query($this->connection, 
+            "   SELECT  m.id, m.employee_id, m.ip,
+                        m.x, m.y, m.room_x, m.room_y,
+                        m.floor_id, m.room_id, IFNULL(r.name, '') as room_name
+                FROM    employees_map m
+                LEFT JOIN rooms r on r.id = m.room_id
+                ORDER BY IFNULL(r.Name, '')");
             if($result) {
                 $employees = array();
                 while($row = mysqli_fetch_assoc($result)) {
@@ -90,7 +93,7 @@
 
         public function AddEmployee($id, $ip, $x, $y, $floorId, $roomId)
         {
-            mysqli_query($this->connection, "INSERT INTO employees_map (employee_id, ip, x, y, floor_id, room_id) 
+            mysqli_query($this->connection, "INSERT INTO employees_map (employee_id, ip, room_x, room_y, floor_id, room_id) 
                 VALUES ($id, '$ip', $x, $y, $floorId, $roomId);"
             );
             return mysqli_affected_rows($this->connection) > 0;                
@@ -98,7 +101,7 @@
 
         public function UpdateEmployee($id, $ip, $x, $y, $floorId, $roomId)
         {
-            mysqli_query($this->connection, "UPDATE  employees_map SET ip='$ip', x=$x, y=$y, floor_id=$floorId, room_id=$roomId
+            mysqli_query($this->connection, "UPDATE  employees_map SET ip='$ip', room_x=$x, room_y=$y, floor_id=$floorId, room_id=$roomId
                 WHERE   employee_id=$id;"
             );
             return mysqli_affected_rows($this->connection) > 0;

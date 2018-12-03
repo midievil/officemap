@@ -48,6 +48,8 @@ function drawMap() {
 
     $div = $("#divMainContainer");
 
+    drawRooms();
+
     for(var i = 0; i < employeeMap.length; i++) {
         var map = employeeMap[i];
         var employee = findEmployeeById(map.Id);
@@ -56,28 +58,37 @@ function drawMap() {
             var tooltip = 'data-toggle="tooltip" data-html="true" data-placement="top" title="' + employee.Name + '<br>Кабинет: ' + map.RoomName + (canEdit() ? ('<br>IP: ' + map.IP + '<br>ID: ' + map.Id) : '') + '"';
             var drag = canEdit() ? 'draggable="true" ondragstart="drag(event)" ' : '';
 
-            var html = '<div data-id="' + map.Id + '" class="point ' + (map.Id == userId ? 'you' : '') + '" data-x="' + map.X + '" data-y="' + map.Y + '" style="left: ' + map.X + '%; top: ' + map.Y + '%" id="point' + map.Id + '" onclick="pointClicked(' + map.Id + ', event)" ' + drag + tooltip + '></div>';
+            var haveRoomCoordinates = map.RoomX > 0 && map.RoomY > 0;
+            var x = haveRoomCoordinates ? map.RoomX : map.X;
+            var y = haveRoomCoordinates ? map.RoomY : map.Y;
+
+            var html = '<div data-id="' + map.Id + '" class="point ' + (map.Id == userId ? 'you' : '') + '" data-x="' + x + '" data-y="' + y + '" style="left: ' + x + '%; top: ' + y + '%" id="point' + map.Id + '" onclick="pointClicked(' + map.Id + ', event)" ' + drag + tooltip + '></div>';
             if(canEdit()){
-                html += '<span class="point-name" style="left: ' + (map.X + 1) + '%; top: ' + map.Y + '%">' + employee.Name + '</span>';
+                html += '<span class="point-name" style="left: ' + (x + 1) + '%; top: ' + y + '%">' + employee.Name + '</span>';
             }
-            $div.append(html);
+            
+            if(haveRoomCoordinates) {
+                $("div[data-room-id='" + map.RoomId + "']").append(html);
+            } else {
+                $div.append(html);
+            }            
         }
     }
 
     $('[data-toggle="tooltip"]').tooltip();
 
-    drawRooms();
     resizeMap();
 }
 
-function addNewPoint(x, y) {
+function addNewPoint(roomId, x, y) {
     if(!canEdit())
         return;
 
     $("#pointNew").remove();
-    $div = $("#divMainContainer");    
+    $div = $("div[data-room-id='" + roomId + "']");    
     $div.append('<div id="pointNew" data-id="New" data-x="' + x + '" data-y="' + y + '" class="point new selected" style="left: ' + x + '%; top: ' + y + '%" draggable="true" onclick="newPointClicked(event)" ondragstart="drag(event)"></div>');
     pointClicked('New');
+    $("#ddlRoom").val(roomId);
 }
 
 
