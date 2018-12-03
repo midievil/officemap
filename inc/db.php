@@ -40,7 +40,11 @@
     class RoomDB extends BaseInnerDB
     {
         public function GetAllRooms() {
-            $result = mysqli_query($this->connection, "SELECT id, `name`, `description`, x1, y1, x2, y2, floor_id, room_type FROM rooms ORDER BY `name`");
+            $result = mysqli_query($this->connection, "
+                SELECT  id, `name`, `description`, x1, y1, x2, y2, floor_id, room_type 
+                FROM    rooms
+                WHERE   is_active = TRUE
+                ORDER BY `name`");
             if($result) {
                 $rooms = array();
                 while($row = mysqli_fetch_assoc($result)) {
