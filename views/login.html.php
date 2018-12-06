@@ -8,7 +8,7 @@
     <meta name="author" content="">
     <link rel="icon" href="./favicon.ico">
 
-    <title>Product example for Bootstrap</title>
+    <title>MMTR office map</title>
 
     <!-- Bootstrap core CSS -->
     <link href="./dist/css/bootstrap.min.css" rel="stylesheet">
