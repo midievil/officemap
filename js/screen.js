@@ -12,6 +12,7 @@ function resizeMap() {
 
 function drawRooms() {
     $("div.room").remove();
+    $("div.room-description").remove();
 
     if(roomsList == null || floorsList == null)
         return;
@@ -23,11 +24,9 @@ function drawRooms() {
         var room = roomsList[i];
         if(room.FloorId == currentFloorId && (room.RoomType == 'Outage' || (room.X1 > 0 && room.X2 > 0 && room.Y1 > 0 && room.Y2 > 0))) {
             var style = 'left: ' + room.X1 + '%; top: ' + room.Y1 + '%; width: ' + (room.X2 - room.X1) + '%; height: ' + (room.Y2 - room.Y1) + '%';
-            var roomDescription = canEdit() ? 
-                room.Name
-                : '<div class="name">' + room.Name + '</div><div class="desc">' + room.Description + '</div>';
-
-            var roomHtml = '<div class="room ' + room.RoomType.toLowerCase() + '" data-room-id="' + room.Id + '" style="' + style + '" onclick="roomClicked(event);">' + roomDescription + '</div>'
+            
+            var roomHtml = '<div class="room ' + room.RoomType.toLowerCase() + '" data-room-id="' + room.Id + '" style="' + style + '" onclick="roomClicked(event);"></div>'
+            roomHtml += '<div class="room-description" style="' + style + '"><div class="name">' + room.Name + '</div><div class="desc">' + room.Description + '</div></div>'
             $div.append(roomHtml);
         }
     }

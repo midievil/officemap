@@ -113,6 +113,19 @@ span.point-name {
   display: none;
 }
 
+div.room-description {
+  position: absolute;
+  z-index: 0;
+  font-weight: bold;  
+}
+
+div.room-description div.name{
+  margin-top: 30px;
+}
+
+div.room-description div.desc {
+  font-size: 10px;  
+}
 
 div.room {
   border: 2px solid #003300;
@@ -140,11 +153,6 @@ div.room div.name {
   margin-top: 30px;
   font-size: 14px;
   line-height: 16px;  
-}
-
-div.room div.desc {
-  font-size: 10px;
-  line-height: 14px;  
 }
 
 #divEmployeeDetails {
