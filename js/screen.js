@@ -54,7 +54,7 @@ function drawMap() {
         var employee = findEmployeeById(map.Id);
         
         if(typeof employee != 'undefined') {
-            var tooltip = 'data-toggle="tooltip" data-html="true" data-placement="top" title="' + employee.Name + '<br>Кабинет: ' + map.RoomName + (canEdit() ? ('<br>IP: ' + map.IP + '<br>ID: ' + map.Id) : '') + '"';
+            var tooltip = 'data-toggle="tooltip" data-html="true" data-placement="top" title="' + employee.Name + '<br>Кабинет: ' + map.RoomName + (canEdit() ? ('<br>IP: ' + map.IP) : '') + '"';
             var drag = canEdit() ? 'draggable="true" ondragstart="drag(event)" ' : '';
 
             var haveRoomCoordinates = map.RoomX > 0 && map.RoomY > 0;
