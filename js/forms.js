@@ -102,6 +102,10 @@ function bindEmployeeForm(map, employee) {
     $("#divSelectEmployee").hide();
     $("#divEmployeeDetails").show();
 
+    $("#divEmployeeDetails div.room").show();
+    $("#divEmployeeDetails div.ip").show();
+    $("#divEmployeeDetails div.buttons").show();
+
     bindAvatar(employee);
     filterReset();
 }
@@ -129,7 +133,28 @@ function bindAddEmployeeForm() {
 
     $("#divEmployeeDetails").show();
 
+    $("#divEmployeeDetails div.room").show();
+    $("#divEmployeeDetails div.ip").show();
+    $("#divEmployeeDetails div.buttons").show();
+
     ddlEmployeeChanged();
+}
+
+function bindViewEmployeeForm(employeeId){
+    var employee = findEmployeeById(employeeId);
+    $("#ddlEmployee").val(employee.Id);
+    $("#hEmployee").text(employee.Name);
+    $("#aSkype").text(employee.Skype);
+    $("#aSkype").attr('href', 'skype:' + employee.Skype + '?chat');
+
+    $("#divEmployeeDetails div.room").hide();
+    $("#divEmployeeDetails div.ip").hide();
+    $("#divEmployeeDetails div.buttons").hide();
+
+    $("#divSelectEmployee").hide();
+    $("#divEmployeeDetails").show();
+
+    bindAvatar(employee);
 }
 
 function bindAvatar(employee) {

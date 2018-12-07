@@ -71,6 +71,7 @@ function searchMap(id) {
 
     if(typeof map === 'undefined') {
         notFoundMapId = id;
+        bindViewEmployeeForm(notFoundMapId);
     } else {
         pointClicked(id);
     }

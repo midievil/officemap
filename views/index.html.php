@@ -92,7 +92,7 @@
                     </div>
                   </div>
 
-                  <div class="form-group row">
+                  <div class="form-group row room">
                     <label for="ddlRoom" class="col-sm-3 col-form-label">Кабинет</label>
                     <div class="col-sm-9">
                       <select class="form-control editable" id="ddlRoom"></select>
@@ -114,8 +114,10 @@
                     </div>
                   </div>
         
-                  <button type="button" class="btn btn-primary editable" onclick="editEmployee();">Сохранить</button>
-                  <button type="button" class="btn btn-danger editable" onclick="deleteEmployeeFromMap();">Убрать с карты</button>
+                  <div class="buttons">
+                    <button type="button" class="btn btn-primary editable" onclick="editEmployee();">Сохранить</button>
+                    <button type="button" class="btn btn-danger editable" onclick="deleteEmployeeFromMap();">Убрать с карты</button>
+                  </div>
                 </form>
             </div>
             <div class="col-sm-4 avatar-container">
