@@ -127,7 +127,7 @@ div.room-description div.desc {
   font-size: 10px;  
 }
 
-div.room {
+#divMainContainer div.room {
   border: 2px solid #003300;
   border-color: rgba(00, 51, 00, 0.2);
   background-color: rgba(00, 51, 00, 0.2);
@@ -139,17 +139,17 @@ div.room {
   line-height: 75px;
 }
 
-div.room.service, div.room.meeting {
+#divMainContainer div.room.service, div.room.meeting {
   background-color: rgba(0, 0, 150, 0.2);
 }
 
-div.room.outage {
+#divMainContainer div.room.outage {
   background-color: transparent;
   color: transparent;
   border: 0px;  
 }
 
-div.room div.name {
+#divMainContainer div.room div.name {
   margin-top: 30px;
   font-size: 14px;
   line-height: 16px;  

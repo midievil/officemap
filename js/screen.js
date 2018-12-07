@@ -11,8 +11,8 @@ function resizeMap() {
 }
 
 function drawRooms() {
-    $("div.room").remove();
-    $("div.room-description").remove();
+    $("#divMainContainer div.room").remove();
+    $("#divMainContainer div.room-description").remove();
 
     if(roomsList == null || floorsList == null)
         return;

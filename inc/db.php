@@ -82,7 +82,12 @@
 
         public function GetEmployee($id) {
             $result = mysqli_query($this->connection,
-				"SELECT id, employee_id, ip, x, y, floor_id, room_id FROM employees_map WHERE employee_id=$id");
+			"   SELECT  m.id, m.employee_id, m.ip,
+                        m.x, m.y, m.room_x, m.room_y,
+                        m.floor_id, m.room_id, IFNULL(r.name, '') as room_name
+                FROM    employees_map m
+                LEFT JOIN rooms r on r.id = m.room_id
+                WHERE m.employee_id=$id");
             if($result && $row = mysqli_fetch_assoc($result)){
                 $emp = new EmployeeMap($row);
                 return $emp;
