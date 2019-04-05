@@ -1,13 +1,14 @@
 <?php
+
+$scriptVersion = '1.1';
+
     session_start();
 
     header('Content-Type: text/html; charset=utf-8');
 
     require_once('config.php');
     require_once('inc/auth.php');    
-
-    $scriptVersion = '1.04';
-
+    
     $queryString = strtolower($_SERVER['REQUEST_URI']);
     if(stripos($queryString, BASE_URI, 0) === 0)
         $queryString = substr($queryString, strlen(BASE_URI));
@@ -21,8 +22,8 @@
 
     if($queryString == 'login' && !empty($_POST['login']) && !empty($_POST['password'])) {
         if($auth->TryLogin($_POST['login'], $_POST['password'])){
-            header('Location: '.BASE_URI);
-        } else {
+            header('Location: '.BASE_URI.(isset($_POST['id']) ? ('?id=' . $_POST['id']) : ""));
+        } else {            
             echo 'incorrect login';
         }
     }
@@ -51,12 +52,8 @@
             header('Location: '.BASE_URI);
             return;
 
-        
-        case '':
-            require('views/index.html.php');
-            return;
-
         default: 
-            die();
+            require('views/index.html.php');
+            return;;
     }
 ?>

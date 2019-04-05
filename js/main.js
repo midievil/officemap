@@ -17,7 +17,7 @@ $(document).ready(function(){
             event.preventDefault();
             return false;
         }
-    });    
+    });
 });
 
 
@@ -183,3 +183,13 @@ function getCookie(key) {
     return typeof cookie !== 'undefined' ?
         cookie.split('=')[1] : null;
 }
+
+function getPointedEmployee() {
+    var id = getRequestParam('id');
+    alert(id);
+}
+
+function getRequestParam(name){
+    if(name=(new RegExp('[?&]'+encodeURIComponent(name)+'=([^&]*)')).exec(location.search))
+       return decodeURIComponent(name[1]);
+ }

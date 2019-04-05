@@ -26,6 +26,7 @@
       <div id="divLogin" class="shadow p-3 bg-white rounded align-middle">
           <div class="">
               <form action="<?=BASE_URI?>login" method="POST">
+                <input type="hidden" name="id" value="<?=isset($_GET['id']) ? $_GET['id'] : $_POST['id']?>"/>
                 <div class="form-group">
                   <input type="text" name="login" class="form-control" id="tbEmail" aria-describedby="emailHelp" placeholder="Логин ММТР"
                     value="<?=isset($_POST['login']) ? $_POST['login'] : ''?>">

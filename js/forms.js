@@ -70,16 +70,33 @@ function onMetaLoaded(isInitial){
             bindEmployeesSelector();
 
             var me = findMapById(userId);
+            var selectedEmployee = undefined;
+
             if(isInitial){
-                if(typeof me !== 'undefined' && me.FloorId != null && me.FloorId != '') {
-                    $("#ddlFloor").val(me.FloorId);
-                } else {                
-                    var floorId = $("#ddlFloor option:first-child").attr('value');
-                    $("#ddlFloor").val(floorId);
-                }    
+
+                var id = getRequestParam('id');
+                if(typeof(id) !== 'undefined'){
+                    selectedEmployee = findMapById(id);
+                    
+                }
+                
+                if(typeof(selectedEmployee) !== 'undefined'){
+                    $("#ddlFloor").val(selectedEmployee.FloorId);
+                } else {
+                    if(typeof me !== 'undefined' && me.FloorId != null && me.FloorId != '') {
+                        $("#ddlFloor").val(me.FloorId);
+                    } else {                
+                        var floorId = $("#ddlFloor option:first-child").attr('value');
+                        $("#ddlFloor").val(floorId);
+                    }
+                }
             }            
             
             onFloorChanged();
+            if(isInitial && typeof(selectedEmployee) !== 'undefined'){
+                pointClicked(selectedEmployee.Id);
+                selectedEmployee = undefined;
+            }
         }
     }
 }
