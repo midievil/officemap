@@ -58,6 +58,7 @@
         public $RoomId;
         public $RoomName;
         public $FloorId;
+        public $FloorName;
     }
 
     class Employee

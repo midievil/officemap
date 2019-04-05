@@ -35,6 +35,18 @@
 
             return null;
         }
+
+        public function GetById($id) {
+            $result = mysqli_query($this->connection, "SELECT id, `name` FROM floors WHERE id = $id");
+            if($result) {
+                if($row = mysqli_fetch_assoc($result)) {
+                    $floor = new Floor($row);
+                    return $floor;
+                }                
+            }
+
+            return null;
+        }
     }
 
     class RoomDB extends BaseInnerDB

@@ -44,6 +44,7 @@ $scriptVersion = '1.1';
         case 'employees':
         case 'map':
         case 'export':
+        case 'api':
             require_once('inc/' . $queryString . '.php');            
             return;
 
