@@ -58,6 +58,12 @@
             return explode(',', ADMIN_IDS);
         }
 
-        
+        public function ApiKeyIsCorrect(){
+            foreach (getallheaders() as $name => $value) {
+                if($name == 'Authorization' && $value == 'Basic ' . API_SECRET)
+                    return true;
+            }
+            return false;
+        }
     }
 ?>

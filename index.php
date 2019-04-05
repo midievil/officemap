@@ -20,6 +20,13 @@ $scriptVersion = '1.1';
 
     $auth = new Authorization();
 
+    if($queryString == 'api'){
+        if($auth->ApiKeyIsCorrect()){
+            require_once('inc/api.php');
+        }
+        die;
+    }
+    
     if($queryString == 'login' && !empty($_POST['login']) && !empty($_POST['password'])) {
         if($auth->TryLogin($_POST['login'], $_POST['password'])){
             header('Location: '.BASE_URI.(isset($_POST['id']) ? ('?id=' . $_POST['id']) : ""));
@@ -44,8 +51,7 @@ $scriptVersion = '1.1';
         case 'employees':
         case 'map':
         case 'export':
-        case 'api':
-            require_once('inc/' . $queryString . '.php');            
+            require_once('inc/' . $queryString . '.php');
             return;
 
         case 'logout':
