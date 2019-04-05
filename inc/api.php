@@ -23,6 +23,11 @@
                 $floorDB = new FloorDB();
                 $floor = $floorDB->GetById($employee->FloorId);
                 $employee->FloorName = $floor->Name;
+
+                $roomDB = new RoomDB();
+                $room = $roomDB->GetById($employee->RoomId);
+                $employee->RoomDescription = $room->Description;
+
                 echo json_encode($employee);
             }
             else

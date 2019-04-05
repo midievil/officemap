@@ -68,6 +68,21 @@
 
             return null;
         }
+
+        public function GetById($id) {
+            $result = mysqli_query($this->connection, "
+                SELECT  id, `name`, `description`, x1, y1, x2, y2, floor_id, room_type 
+                FROM    rooms
+                WHERE   id = $id");
+            if($result) {
+                if($row = mysqli_fetch_assoc($result)) {
+                    $room = new Room($row);
+                    return $room;
+                }
+            }
+
+            return null;
+        }
     }
 
     class MapDB extends BaseInnerDB

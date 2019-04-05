@@ -57,6 +57,7 @@
         public $Y;
         public $RoomId;
         public $RoomName;
+        public $RoomDescription;
         public $FloorId;
         public $FloorName;
     }
