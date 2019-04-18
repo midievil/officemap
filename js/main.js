@@ -186,7 +186,7 @@ function getCookie(key) {
 
 function getPointedEmployee() {
     var id = getRequestParam('id');
-    alert(id);
+    return id;
 }
 
 function getRequestParam(name){

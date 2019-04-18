@@ -1,10 +1,8 @@
 <?php
 
-$scriptVersion = '1.1';
+    $scriptVersion = '1.1';
 
     session_start();
-
-    header('Content-Type: text/html; charset=utf-8');
 
     require_once('config.php');
     require_once('inc/auth.php');    
@@ -29,11 +27,13 @@ $scriptVersion = '1.1';
     
     if($queryString == 'login' && !empty($_POST['login']) && !empty($_POST['password'])) {
         if($auth->TryLogin($_POST['login'], $_POST['password'])){
-            header('Location: '.BASE_URI.(isset($_POST['id']) ? ('?id=' . $_POST['id']) : ""));
+            header('Location: '.BASE_URI.(!empty($_POST['id']) ? ('?id=' . $_POST['id']) : ""));
         } else {            
             echo 'incorrect login';
         }
     }
+
+    header('Content-Type: text/html; charset=utf-8');
 
     if(!$auth->IsAuthorized())
     {
