@@ -27,7 +27,8 @@
     
     if($queryString == 'login' && !empty($_POST['login']) && !empty($_POST['password'])) {
         if($auth->TryLogin($_POST['login'], $_POST['password'])){
-            header('Location: '.BASE_URI.(!empty($_POST['id']) ? ('?id=' . $_POST['id']) : ""));
+            $redirectUrl = BASE_URI.(!empty($_POST['id']) ? ('?id=' . $_POST['id']) : "");
+            header("Location: $redirectUrl");
         } else {            
             echo 'incorrect login';
         }
