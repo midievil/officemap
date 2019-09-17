@@ -263,6 +263,16 @@ a.dropdown-item {
   cursor: pointer;
 }
 
+div.logo[floor='3']{
+  top: 41%;
+  left: 47%;
+  max-width: 20%;
+}
+
+div.logo[floor='3'] h2{
+  display: none;
+}
+
 @media print{
   .position-relative {
     position: relative !important;

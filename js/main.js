@@ -44,6 +44,8 @@ function onFloorChanged() {
     $(".room-name").text(floor.Name);
     $("#imgPlan").attr('src', '/img/rooms/' + floor.Img + '?v=' + scriptVersion);
     var imgUrl = '/img/rooms/' + floor.Img;
+
+    $('div.logo').attr('floor', floor.Id);
     
     drawMap();
 }
