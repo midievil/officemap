@@ -123,8 +123,11 @@ function bindEmployeeForm(map, employee) {
     $("#divEmployeeDetails div.ip").show();
     $("#divEmployeeDetails div.buttons").show();
 
+    $("#ulEmployees li.emp" + employee.Id).addClass('active');
+
     bindAvatar(employee);
-    filterReset();
+    
+    notFoundMapId = null;
 }
 
 function bindAddEmployeeForm() {
@@ -187,4 +190,5 @@ function cancelEmployeeEdit() {
     $("#divEmployeeDetails").hide();
     $("#pointNew").remove();
     $("div.point").removeClass('selected');
+    $("#ulEmployees li").removeClass('active');
 }

@@ -50,16 +50,9 @@ function filterNotOnMap() {
     }
 }
 
-function filterReset() {
-    $("#ulEmployees li").removeClass('active');
-    notFoundMapId = null;
-}
-
-
 function searchMap(id) {
     $("#ulEmployees li").removeClass('active');
-    $("#ulEmployees li.emp"+id).addClass('active');
-
+    
     var map = findMapById(id);
     if(typeof map !== 'undefined' && map.FloorId != getCurrentFloorId()) {
         $("#ddlFloor").val(map.FloorId);
@@ -68,7 +61,7 @@ function searchMap(id) {
 
     $("div.point").removeClass('selected');
     $("#point" + id).addClass('selected');
-
+    
     if(typeof map === 'undefined') {
         notFoundMapId = id;
         bindViewEmployeeForm(notFoundMapId);

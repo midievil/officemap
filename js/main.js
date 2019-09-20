@@ -76,9 +76,18 @@ function pointClicked(id, ev) {
         animatePoint(id);
 
         $("#pointNew").remove();
+
+        if(typeof ev !== 'undefined')
+            scrollToEmployee(id);
     }
 }
 
+function scrollToEmployee(id) {
+    var list = document.getElementById("ulEmployees"),
+        targetLi = document.getElementById('li' + id); // id tag of the <li> element
+
+    list.scrollTop = (targetLi.offsetTop - 100);
+}
 
 function allowDrop(ev) {
     if(canEdit())        
