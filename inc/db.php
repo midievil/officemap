@@ -23,7 +23,7 @@
     class FloorDB extends BaseInnerDB
     {
         public function GetAllFloors() {
-            $result = mysqli_query($this->connection, "SELECT id, `name` FROM floors ORDER BY `order`");
+            $result = mysqli_query($this->connection, "SELECT id, `name` FROM floors WHERE is_active = TRUE ORDER BY `order`");
             if($result) {
                 $floors = array();
                 while($row = mysqli_fetch_assoc($result)) {

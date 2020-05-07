@@ -1,6 +1,8 @@
 CREATE TABLE `floors` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(50) DEFAULT NULL,
+  `order` int NOT NULL DEFAULT 0,
+  `is_active` BOOL DEFAULT true NOT NULL
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
