@@ -37,6 +37,8 @@
 
 .overflow-hidden { overflow: hidden; }
 
+.overflow-scroll { overflow: scroll; }
+
 .fixed-top {
   width: 0px;
 }
@@ -272,6 +274,23 @@ div.logo[floor='3']{
 div.logo[floor='3'] h2{
   display: none;
 }
+
+
+div.logo[floor='4']{
+  top: 14%;  
+  display: none;
+}
+
+div.logo[floor='5']{
+  top: 14%;
+  display: none;
+}
+
+div.logo[floor='6']{
+  top: 15%;
+  display: none;
+}
+
 
 @media print{
   .position-relative {

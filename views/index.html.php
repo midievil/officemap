@@ -43,7 +43,7 @@
       </div>
     </nav>
 
-    <div class="position-relative overflow-hidden p-3 p-md-5 m-md-3 text-center bg-light">
+    <div class="position-relative overflow-scroll p-3 p-md-5 m-md-3 text-center bg-light">
         <div id='divFilter' class="col-md-5 mx-auto">
             Этаж: <select id='ddlFloor' onchange="onFloorChanged()"></select>
         </div>

@@ -7,8 +7,22 @@ function bindWindowResize(){
 function resizeMap() {    
     var container = document.getElementById('divMainContainer');
     var newHeight = container.clientWidth * 0.51462621885157; 
-    $('#divMainContainer').css('height', newHeight+'px');
+    //$('#divMainContainer').css('height', newHeight+'px');
+
+    if(resizeTimeout != null)
+    {
+        window.clearTimeout(resizeTimeout);
+        resizeTimeout = null;
+    }
+
+    resizeTimeout = window.setTimeout(function(){
+        var img = document.getElementById('imgPlan');
+        var newHeight = img.clientHeight; 
+        $('#divMainContainer').css('height', newHeight+'px');
+    }, 100);    
 }
+
+var resizeTimeout = null;
 
 function drawRooms() {
     $("#divMainContainer div.room").remove();
