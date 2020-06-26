@@ -35,3 +35,16 @@ CREATE TABLE `rooms` (
 `is_active` BIT DEFAULT 1 NOT NULL
 PRIMARY KEY (`id`));
 
+CREATE TABLE `devices` (
+	`id` INT auto_increment NOT NULL,
+	`name` VARCHAR(250) DEFAULT '' NOT NULL,
+	`description` varchar(250) NULL,
+	`room_id` INT NULL,
+  `x` DOUBLE NOT NULL,
+  `y` DOUBLE NOT NULL,
+	CONSTRAINT devices_PK PRIMARY KEY (`id`)
+)
+ENGINE=InnoDB
+DEFAULT CHARSET=utf8
+COLLATE=utf8_general_ci
+COMMENT='Office devices available for employees';

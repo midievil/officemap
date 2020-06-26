@@ -146,6 +146,27 @@
         }
     }
 
+    class DeviceDB extends BaseInnerDB
+    {
+        public function GetAllDevices() {
+            $result = mysqli_query($this->connection, 
+            "   SELECT  d.id, d.name, d.description, d.room_id, d.x, d.y
+                FROM    devices d
+                LEFT JOIN rooms r on r.id = d.room_id
+                ORDER BY IFNULL(r.name, '')");
+            if($result) {
+                $employees = array();
+                while($row = mysqli_fetch_assoc($result)) {
+                    $emp = new EmployeeMap($row);
+                    $employees []= $emp;
+                }
+                return $employees;
+            }
+
+            return null;
+        }
+    }
+
     class EmployeeDB extends BaseExternalDB
     {
         public function GetAllEmployees() {
