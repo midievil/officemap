@@ -79,16 +79,20 @@ function onMetaLoaded(isInitial){
                     selectedEmployee = findMapById(id);
                     
                 }
+
+                $("#ddlFloor").val(null);
                 
                 if(typeof(selectedEmployee) !== 'undefined'){
                     $("#ddlFloor").val(selectedEmployee.FloorId);
                 } else {
                     if(typeof me !== 'undefined' && me.FloorId != null && me.FloorId != '') {
                         $("#ddlFloor").val(me.FloorId);
-                    } else {                
-                        var floorId = $("#ddlFloor option:first-child").attr('value');
-                        $("#ddlFloor").val(floorId);
                     }
+                }
+
+                if($("#ddlFloor").val() == null){
+                    var floorId = $("#ddlFloor option:first-child").attr('value');
+                    $("#ddlFloor").val(floorId);
                 }
             }            
             

@@ -9,6 +9,18 @@ $(document).ready(function(){
     bindWindowResize();
     resizeMap();
 
+    $("#imgPlan").one("load", function() {
+        resizeMap();
+        console.debug('Map image loaded');
+      }).each(function() {
+        if(this.complete) {
+            //$(this).load(); // For jQuery < 3.0 
+            $(this).trigger('load'); // For jQuery >= 3.0 
+        }
+      });
+
+
+
     if(getCookie('remember') == 'true')
         ping();
 

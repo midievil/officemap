@@ -55,8 +55,10 @@ function searchMap(id) {
     
     var map = findMapById(id);
     if(typeof map !== 'undefined' && map.FloorId != getCurrentFloorId()) {
-        $("#ddlFloor").val(map.FloorId);
-        onFloorChanged();
+        if($("#ddlFloor option[value='" + map.FloorId + "']").length >= 1) {
+            $("#ddlFloor").val(map.FloorId);
+            onFloorChanged();
+        }
     }
 
     $("div.point").removeClass('selected');
