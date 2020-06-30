@@ -19,7 +19,7 @@ function resizeMap() {
         var img = document.getElementById('imgPlan');
         var newHeight = img.clientHeight; 
         $('#divMainContainer').css('height', newHeight+'px');
-    }, 100);    
+    }, 500);    
 }
 
 var resizeTimeout = null;
