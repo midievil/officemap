@@ -23,29 +23,28 @@
     
 
     <div class="fixed" style="width: 100%; padding-top: 200px;">
-      <div id="divLogin" class="shadow p-3 bg-white rounded align-middle">
-          <div class="">
-              <form action="<?=BASE_URI?>login" method="POST">
+      <div id="divLogin" class="p-3 bg-white rounded align-middle">
+        <div class="container text-center ng-scope">
+              <form action="<?=BASE_URI?>login" method="POST" class="form-signin">
+                <img class="mb-4" src="https://my.mmtr.ru/logo1.png" alt="" width="150">
+
                 <input type="hidden" name="id" value="<?=isset($_GET['id']) ? $_GET['id'] : (isset($_POST['id']) ? $_POST['id'] : "" )?>"/>
                 <div class="form-group">
-                  <input type="text" name="login" class="form-control" id="tbEmail" aria-describedby="emailHelp" placeholder="Логин ММТР"
+                  <input type="login" name="login" class="form-control" id="tbEmail" aria-describedby="emailHelp" placeholder="Логин ММТР"
                     value="<?=isset($_POST['login']) ? $_POST['login'] : ''?>">
-                </div>
-                <div class="form-group">
                   <input type="password" name="password" class="form-control" id="tbPassword" placeholder="Пароль">
                 </div>
                 <div class="form-group form-check">
                   <input type="checkbox" class="form-check-input" id="cbRemember" name="remember" <?=(isset($_COOKIE['remember']) ? 'checked' : '' )?> >
                   <label class="form-check-label" for="cbRemember">Запомнить меня</label>
                 </div>
-                <button type="submit" class="btn btn-primary">Вход</button>
+                <button type="submit" class="btn btn-primary btn-block">Вход</button>
               </form>
           </div>
       </div>
     </div>
 
     
-
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->

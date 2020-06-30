@@ -1,5 +1,13 @@
+body{
+  font-size: 16px;
+}
+
 .container {
   max-width: 960px;
+}
+
+.text-center {
+  text-align: center!important;
 }
 
 /*
@@ -289,6 +297,26 @@ div.logo[floor='5']{
 div.logo[floor='6']{
   top: 15%;
   display: none;
+}
+
+.form-signin input[type="login"] {
+  margin-bottom: -1px;
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+}
+
+.form-signin input[type="password"] {
+  margin-bottom: 10px;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+
+.form-signin .form-control {
+  position: relative;
+  box-sizing: border-box;
+  height: auto;
+  padding: 10px;
+  font-size: 16px;
 }
 
 
