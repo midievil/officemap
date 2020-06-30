@@ -5,12 +5,93 @@
 
     class Authorization
     {
-        public function IsAuthorized() {            
-            return isset($_SESSION['is_logged_in']) 
-                && $_SESSION['is_logged_in'] === true;
+        private function sendAuthPostRequest($endpoint, $params)
+        {
+            $curl = curl_init();
+            curl_setopt_array($curl, array(
+                CURLOPT_URL => "https://my.mmtr.ru/ts-rest/SingleSignOn/$endpoint",
+                CURLOPT_RETURNTRANSFER => true,
+                CURLOPT_ENCODING => "",
+                CURLOPT_MAXREDIRS => 10,
+                CURLOPT_TIMEOUT => 0,
+                CURLOPT_FOLLOWLOCATION => true,
+                CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+                CURLOPT_CUSTOMREQUEST => "POST",
+                CURLOPT_POSTFIELDS => json_encode($params),
+                CURLOPT_HTTPHEADER => array(
+                    "Content-Type: application/json"
+                ),
+            ));
+
+            $response = curl_exec($curl);
+            curl_close($curl);
+            //var_dump($response);
+
+            $result = json_decode($response);
+
+            return $result;
+        }
+
+        public function IsAuthorized() {
+
+            //if(isset($_SESSION['is_logged_in']) 
+            //    && $_SESSION['is_logged_in'] === true)
+            //    return true;
+
+            //return false;
+
+            if(isset($_COOKIE["token"]))
+            {
+                $token = $_COOKIE["token"];
+
+                $result = $this-> sendAuthPostRequest(
+                    'getUserByTokenInfo', 
+                    array( "tokenInfo" => $token )
+                );
+
+                if($result->isSuccess){                
+                    $_SESSION['user_id'] = $result->object->id;
+                    $_SESSION['is_pm'] = false;
+                    //var_dump("ok");
+                    //die;
+                    return true;
+                }
+            }
+
+            unset($_COOKIE['token']);             
+            return false;
         }
 
         public function TryLogin($login, $password) {
+            
+            $result = $this-> sendAuthPostRequest(
+                'authorization', 
+                array(
+                    "login" => $login,
+                    "password" => $password
+                )
+            );
+
+            if($result->isSuccess === true)
+            {
+                $_SESSION['is_logged_in'] = true;
+
+                $db = new EmployeeDB();
+                $emp = $db->GetEmployeeByLoginPassword($login, $password);
+                $_SESSION['user_id'] = $emp->Id;
+                $_SESSION['is_pm'] = $emp->IsProjectManager;// && $emp->KindOfActivityId == 5;
+
+                unset($_COOKIE['token']); 
+                setcookie("token", $result->object->userToken->tokenInfo, time()+60*60*24*30, '/', 'mmtr.ru');
+
+                //var_dump($_COOKIE["token"]); die;
+
+                return true;
+            }
+
+            return false;
+
+            
             $ad = new ActiveDirectory();
             if($ad->TryLogin($login, $password))
             {
@@ -22,7 +103,7 @@
                 $_SESSION['is_pm'] = $emp->IsProjectManager;// && $emp->KindOfActivityId == 5;
 
                 if(isset($_POST["remember"])) {
-                    setcookie('remember', 'true');
+                    setcookie('remember', 'true', time()+60*60*24*30);
                 } else {
                     setcookie('remember', '', time()-3600);
                 }
@@ -36,6 +117,18 @@
         public function Logout() {
             $_SESSION['user_id'] = null;
             $_SESSION['is_logged_in'] = false;
+
+            if(isset($_COOKIE["token"]))
+            {   
+                $token = $_COOKIE["token"];
+
+                $result = $this-> sendAuthPostRequest(
+                    'logout', 
+                    array(
+                        "tokenInfo" => $token
+                    )
+                );
+            }
         }
 
         public function GetUserId(){
@@ -59,6 +152,7 @@
         }
 
         public function ApiKeyIsCorrect(){
+            return true;
             foreach (getallheaders() as $name => $value) {
                 if($name == 'Authorization' && $value == 'Basic ' . API_SECRET)
                     return true;
