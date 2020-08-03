@@ -6,6 +6,12 @@ body{
   max-width: 960px;
 }
 
+@media (min-width: 1200px){
+  .container {
+      max-width: 1400px !important;
+  }
+}
+
 .text-center {
   text-align: center!important;
 }
@@ -51,7 +57,9 @@ body{
   width: 0px;
 }
 
-
+#divFilter{
+  padding-top: 20px;
+}
 
 #divMainContainer{
   z-index: 0;

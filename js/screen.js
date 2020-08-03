@@ -76,9 +76,9 @@ function drawMap() {
             var y = haveRoomCoordinates ? map.RoomY : map.Y;
 
             var html = '<div data-id="' + map.Id + '" class="point ' + (map.Id == userId ? 'you' : '') + '" data-x="' + x + '" data-y="' + y + '" style="left: ' + x + '%; top: ' + y + '%" id="point' + map.Id + '" onclick="pointClicked(' + map.Id + ', event)" ' + drag + tooltip + '></div>';
-            if(canEdit()){
-                html += '<span class="point-name" style="left: ' + (x + 1) + '%; top: ' + y + '%">' + employee.Name + '</span>';
-            }
+            //if(canEdit()){
+            //    html += '<span class="point-name" style="left: ' + (x + 1) + '%; top: ' + y + '%">' + employee.Name + '</span>';
+            //}
             
             if(haveRoomCoordinates) {
                 $("div[data-room-id='" + map.RoomId + "']").append(html);
@@ -161,4 +161,8 @@ function getClickYPercent(y){
     var container = document.getElementById("divMainContainer");
     var totalHeight  = container.clientHeight;
     return y / totalHeight * 100;
+}
+
+function searchEmployee (){
+    document.getElementById("tbEmployeesFilter").focus();
 }

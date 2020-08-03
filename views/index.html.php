@@ -18,22 +18,74 @@
 
   <body>
 
-    <nav class="site-header sticky-top py-1">
+  
+  <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
+    <div class="container">
+      <a class="navbar-brand mb-0 h1" href="#">Мой ММТР</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item active">
+            <a class="nav-link" >Карта офиса</a>
+          </li>
+          
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="employeesMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Сотрудники
+            </a>
+            <div class="dropdown-menu" aria-labelledby="employeesMenuLink">
+              <a class="dropdown-item" onclick="searchEmployee()">Поиск</a>
+            </div>
+          </li>
+
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="devicesMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Принтеры
+            </a>
+            <div class="dropdown-menu" aria-labelledby="devicesMenuLink" id='divDevicesMenu'>
+              
+            </div>
+          </li>
+
+        </ul>
+      </div>
+    </div>
+</nav>
+
+
+    <!--nav class="site-header sticky-top py-1">
       <div class="container d-flex flex-column flex-md-row justify-content-between">
           <a class="navbar-brand" href="#">#MMTRMap</a>
 
-          <div class="navbar-collapse" id="navbarNavDropdown">
+          <div class=" navbar-collapse" id="navbarNavDropdown">
             <ul class="navbar-nav">
+
+              <li class="dropdown">
+                  <a class="nav-link dropdown-toggle" href="#" id="employeesMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Сотрудники
+                  </a>
+                  <div class="dropdown-menu" aria-labelledby="employeesMenuLink">
+                    <a class="dropdown-item" onclick='searchEmployee()'>Поиск</a>
+                  </div>
+                </li>
+                <li class="dropdown">
+                  <a class="nav-link dropdown-toggle" href="#" id="devicesMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Устройства
+                  </a>
+                </li>
+
               <? if(Authorization::CanEdit()) { ?>
-              <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  Печать
-                </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                  <a class="dropdown-item" onclick='printEmployeesList()'>Список сотрудников</a>
-                  <a class="dropdown-item" onclick='printMap()'>Карта</a>                  
-                </div>
-              </li>
+                <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle" href="#" id="printMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Печать
+                  </a>
+                  <div class="dropdown-menu" aria-labelledby="printMenuLink">
+                    <a class="dropdown-item" onclick='printEmployeesList()'>Список сотрудников</a>
+                    <a class="dropdown-item" onclick='printMap()'>Карта</a>                  
+                  </div>
+                </li>
               <? } ?>
             </ul>
           </div>
@@ -41,9 +93,9 @@
         
         <a class="py-2 d-none d-md-inline-block" href="<?=BASE_URI?>logout">Выход</a>
       </div>
-    </nav>
+    </nav-->
 
-    <div class="position-relative overflow-scroll p-3 p-md-5 m-md-3 text-center bg-light">
+    <div class="position-relative overflow-scroll text-center">
         <div id='divFilter' class="col-md-5 mx-auto">
             Этаж: <select id='ddlFloor' onchange="onFloorChanged()"></select>
         </div>
