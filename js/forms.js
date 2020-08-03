@@ -63,7 +63,7 @@ function onMetaLoaded(isInitial){
         buildFloorsFilter();
         buildRoomsFilter();
         
-        if(employeesList != null && mapList != null)
+        if(employeesList != null && mapList != null && devicesList != null)
         {
             isLocked = false;
 
@@ -108,12 +108,14 @@ function onMetaLoaded(isInitial){
 function bindEmployeeForm(map, employee) {
     $point = $("div.point.selected");
     
+    var idHint = canEdit() ? (" (id: " + employee.Id + ")") : "";
+
     $("#ddlEmployee").val(employee.Id);
     $("#hEmployee").text(employee.Name);
     $("#aSkype").text(employee.Skype);
     $("#aSkype").attr('href', 'skype:' + employee.Skype + '?chat');
 
-    $("#txtIP").val(map.IP);
+    $("#txtIP").val(map.IP + idHint);
     $("#ddlRoom").val(map.RoomId);
     $("#txtRoom").val(map.RoomName);
 
@@ -195,4 +197,37 @@ function cancelEmployeeEdit() {
     $("#pointNew").remove();
     $("div.point").removeClass('selected');
     $("#ulEmployees li").removeClass('active');
+}
+
+function onDevicesLoaded() {
+    $printersDiv = $("#divDevicesMenu");
+    $printersDiv.empty();
+
+    for(var i = 0; i < devicesList.length; i++) {
+        var device = devicesList[i];
+
+        if(device.Type == 1 || device.Type == 2) {
+            var html = '<a class="dropdown-item" onclick="showDevice(' + device.Id + ')">' + device.Name + ' (' + device.FloorName + ')' + '</a>';
+            $printersDiv.append(html);
+        }
+    }
+}
+
+function showDevice(id)
+{
+    $("div.device").tooltip('hide');
+
+    var device = findDeviceById(id);
+
+    if(typeof device !== 'undefined' && device.FloorId != getCurrentFloorId()) {
+        if($("#ddlFloor option[value='" + device.FloorId + "']").length >= 1) {
+            $("#ddlFloor").val(device.FloorId);
+            onFloorChanged();
+        }
+    }
+    //var y = $("div.device2").offset().top;
+    $([document.documentElement, document.body]).animate({
+        scrollTop: $("div.device" + id).offset().top - 200
+    }, 2000);
+    $("div.device" + id).tooltip('show');
 }

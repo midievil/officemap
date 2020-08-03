@@ -82,4 +82,31 @@
         public $KindOfActivityId;
         public $Skype;
     }
+
+    class Device
+    {
+        function __construct($row) {
+            $this->Id = $row['id'];
+            $this->Name = $row['name'];
+            $this->Description = $row['description'];
+            $this->X = $row['x'];
+            $this->Y = $row['y'];
+            $this->FloorId = $row['floor_id'];
+            $this->RoomId = $row['room_id'];
+            $this->RoomName = $row['room_name'];
+            $this->FloorName = $row['floor_name'];
+            $this->Type = $row['type'];
+        }
+
+        public $Id;
+        public $Name;
+        public $Description;
+        public $X;
+        public $Y;
+        public $RoomId;
+        public $RoomName;
+        public $FloorId;
+        public $FloorName;
+        public $Type;
+    }
 ?>

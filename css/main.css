@@ -62,6 +62,24 @@ body{
   width: 100%;
 }
 
+div.device {
+  position: absolute;
+  width: 32px;
+  height: 32px;
+  margin-left: -16px;
+  margin-top: -16px;
+  cursor: pointer;
+  z-index: 3;
+  background-size: 32px;
+}
+
+div.device.device1 {
+  background-image: url(/img/icons/device1.png);
+}
+div.device.device2 {
+  background-image: url(/img/icons/device2.png);
+}
+
 div.point {
   width: 12px;
   height: 12px;

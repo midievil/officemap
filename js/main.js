@@ -3,6 +3,7 @@ $(document).ready(function(){
     loadFloors();
     loadEmployees();
     loadMap(true);
+    loadDevices();
 
     setEditables();
 
@@ -215,4 +216,4 @@ function getPointedEmployee() {
 function getRequestParam(name){
     if(name=(new RegExp('[?&]'+encodeURIComponent(name)+'=([^&]*)')).exec(location.search))
        return decodeURIComponent(name[1]);
- }
+}

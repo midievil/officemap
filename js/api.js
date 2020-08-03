@@ -54,6 +54,19 @@ function loadMap(isInitial) {
     });
 }
 
+function loadDevices(){
+    devicesList = null;    
+
+    $.ajax({
+        url: '/devices',
+        success: function(result){
+            devicesList = JSON.parse(result);
+            onMetaLoaded(true);
+            onDevicesLoaded();
+        }
+    });
+}
+
 function loadEmployees() {
     employeesList = null;
     isLocked = true;
@@ -103,3 +116,4 @@ var floorsList = null;
 var roomsList = null;
 var employeesList = null;
 var mapList = null;
+var devicesList = null;

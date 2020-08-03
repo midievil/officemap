@@ -88,6 +88,18 @@ function drawMap() {
         }
     }
 
+    for(var i = 0; i < devicesList.length; i++) {
+        var device = devicesList[i];
+        var drag = '';
+        var tooltip = 'data-toggle="tooltip" data-html="true" data-placement="top" title="' + device.Name + '<br>Кабинет: ' + device.RoomName + '"';
+
+        var x = device.X;
+        var y = device.Y;
+
+        var html = '<div data-deviceid="' + device.Id + '" class="device device' + device.Type +  '" data-x="' + x + '" data-y="' + y + '" style="left: ' + x + '%; top: ' + y + '%" id="device' + device.Id + '" onclick="deviceClicked(' + device.Id + ', event)" ' + drag + tooltip + '></div>';
+        $("div[data-room-id='" + device.RoomId + "']").append(html);
+    }
+
     $('[data-toggle="tooltip"]').tooltip();
 
     resizeMap();

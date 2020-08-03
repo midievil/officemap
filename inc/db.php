@@ -150,14 +150,15 @@
     {
         public function GetAllDevices() {
             $result = mysqli_query($this->connection, 
-            "   SELECT  d.id, d.name, d.description, d.room_id, d.x, d.y
+            "   SELECT  d.id, d.name, d.description, d.room_id, d.x, d.y, d.type, r.name room_name, r.floor_id, f.name floor_name
                 FROM    devices d
-                LEFT JOIN rooms r on r.id = d.room_id
+                JOIN rooms r on r.id = d.room_id
+                JOIN floors f on f.id = r.floor_id
                 ORDER BY IFNULL(r.name, '')");
             if($result) {
                 $employees = array();
                 while($row = mysqli_fetch_assoc($result)) {
-                    $emp = new EmployeeMap($row);
+                    $emp = new Device($row);
                     $employees []= $emp;
                 }
                 return $employees;

@@ -52,6 +52,7 @@
         case 'employees':
         case 'map':
         case 'export':
+        case 'devices':
             require_once('inc/' . $queryString . '.php');
             return;
 

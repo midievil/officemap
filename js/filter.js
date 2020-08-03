@@ -12,6 +12,13 @@ function findMapById(employeeId){
     return map;
 }
 
+function findDeviceById(deviceId){
+    var device = devicesList.find(function(dev){
+        return dev.Id == deviceId;
+    });
+    return device;
+}
+
 function findRoomByCoordinates(x, y) {
     var floorId = getCurrentFloorId();
     var room = roomsList.find(function(room){
