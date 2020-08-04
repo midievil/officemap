@@ -325,6 +325,15 @@ div.logo[floor='6']{
   display: none;
 }
 
+div.logo[floor='7'],
+div.logo[floor='8'],
+div.logo[floor='9'],
+div.logo[floor='10'],
+div.logo[floor='11']
+{
+  display: none;
+}
+
 .form-signin input[type="login"] {
   margin-bottom: -1px;
   border-bottom-right-radius: 0;
