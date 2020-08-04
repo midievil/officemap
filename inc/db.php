@@ -174,11 +174,11 @@
 
             $result = mysqli_query($this->connection,
 			"
-                SELECT  e.Id, e.LastName, e.FirstName, e.UserIp, e.IsProjectManager, e.KindOfActivityId, a.Path as Avatar, Skype
+                SELECT  e.Id, e.LastName, e.FirstName, e.UserIp, e.IsProjectManager, e.KindOfActivityId, a.Path as Avatar, Skype, Login
                 FROM    employees e 
                 LEFT JOIN avatars a ON a.EmployeeId = e.Id AND a.IsDeleted = 0
                 WHERE   e.IsDismissed = 0 AND e.IsDeleted = 0 AND IsSwitchedOn = 1
-                GROUP BY e.Id, e.LastName, e.FirstName, e.UserIp, e.IsProjectManager, e.KindOfActivityId
+                GROUP BY e.Id, e.LastName, e.FirstName, e.UserIp, e.IsProjectManager, e.KindOfActivityId, Skype, Login
                 ORDER BY e.LastName, e.FirstName");
             if($result) {
                 $employees = array();
@@ -194,10 +194,26 @@
 
         public function GetEmployeeByLoginPassword($login, $password) {
             $result = mysqli_query($this->connection, "
-                SELECT  e.Id, e.LastName, e.FirstName, e.UserIp, e.IsProjectManager, e.KindOfActivityId, a.Path as Avatar, Skype
+                SELECT  e.Id, e.LastName, e.FirstName, e.UserIp, e.IsProjectManager, e.KindOfActivityId, a.Path as Avatar, Skype, Login
                 FROM    employees e
                 LEFT JOIN avatars a ON a.EmployeeId = e.Id AND a.IsDeleted = 0
                 WHERE   (e.Login = '$login' OR e.Email='$login') AND TRUE");
+            if($result) {
+                if($row = mysqli_fetch_assoc($result)) {
+                    $emp = new Employee($row);
+                    return $emp;
+                }
+            }
+
+            return null;          
+        }
+
+        public function GetEmployeeById($id) {
+            $result = mysqli_query($this->connection, "
+                SELECT  e.Id, e.LastName, e.FirstName, e.UserIp, e.IsProjectManager, e.KindOfActivityId, a.Path as Avatar, Skype, Login
+                FROM    employees e
+                LEFT JOIN avatars a ON a.EmployeeId = e.Id AND a.IsDeleted = 0
+                WHERE   (e.Id = $id) AND TRUE");
             if($result) {
                 if($row = mysqli_fetch_assoc($result)) {
                     $emp = new Employee($row);

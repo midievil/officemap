@@ -14,6 +14,7 @@
     if(stripos($queryString, '/') !== false){
         $parts = explode('/', $queryString);
         $queryString = $parts[0];
+        $queryParams = $parts[1];
     }
 
     $auth = new Authorization();

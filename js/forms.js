@@ -108,7 +108,7 @@ function onMetaLoaded(isInitial){
 function bindEmployeeForm(map, employee) {
     $point = $("div.point.selected");
     
-    var idHint = canEdit() ? (" (id: " + employee.Id + ")") : "";
+    var idHint = ""; //canEdit() ? (" (id: " + employee.Id + ")") : "";
 
     $("#ddlEmployee").val(employee.Id);
     $("#hEmployee").text(employee.Name);
@@ -134,6 +134,10 @@ function bindEmployeeForm(map, employee) {
     bindAvatar(employee);
     
     notFoundMapId = null;
+
+    loadEmployeeById(employee.Id, function(emp) {
+        $("#txtIP").val(emp.Ip);
+    });
 }
 
 function bindAddEmployeeForm() {

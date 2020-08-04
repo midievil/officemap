@@ -72,6 +72,7 @@
             $this->IsProjectManager = $row['IsProjectManager'];
             $this->KindOfActivityId = $row['KindOfActivityId'];
             $this->Skype = $row['Skype'];
+            $this->Login = $row['Login'];
         }
 
         public $Id;
@@ -81,6 +82,7 @@
         public $IsProjectManager;
         public $KindOfActivityId;
         public $Skype;
+        public $Login;
     }
 
     class Device

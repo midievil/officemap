@@ -80,6 +80,16 @@ function loadEmployees() {
     });
 }
 
+function loadEmployeeById(id, onLoad) {
+    $.ajax({
+        url: '/employees/' + id,
+        method: 'GET',
+        success: function(result){
+            onLoad(JSON.parse(result));
+        }
+    });
+}
+
 function saveEmployee(employee, onSuccess) {
     isLocked = true;
     $.ajax({
