@@ -53,10 +53,33 @@
     {
         public function GetAllRooms() {
             $result = mysqli_query($this->connection, "
-                SELECT  id, `name`, `description`, x1, y1, x2, y2, floor_id, room_type 
-                FROM    rooms
-                WHERE   is_active = TRUE
-                ORDER BY `name`");
+                SELECT  r.id, r.`name`, r.`description`, r.x1, r.y1, r.x2, r.y2, r.floor_id, r.room_type 
+                FROM    rooms r
+                JOIN    floors f ON f.id = r.floor_id
+                WHERE   r.is_active = TRUE
+                        AND f.is_active = TRUE
+                ORDER BY r.`name`");
+            if($result) {
+                $rooms = array();
+                while($row = mysqli_fetch_assoc($result)) {
+                    $room = new Room($row);
+                    $rooms []= $room;
+                }
+                return $rooms;
+            }
+
+            return null;
+        }
+
+        public function GetByFloorId($floorId) {
+            $result = mysqli_query($this->connection, "
+                SELECT  r.id, r.`name`, r.`description`, r.x1, r.y1, r.x2, r.y2, r.floor_id, r.room_type 
+                FROM    rooms r
+                JOIN    floors f ON f.id = r.floor_id
+                WHERE   r.is_active = TRUE 
+                        AND f.is_active = TRUE
+                        AND r.floor_id = $floorId
+                ORDER BY r.`name`");
             if($result) {
                 $rooms = array();
                 while($row = mysqli_fetch_assoc($result)) {

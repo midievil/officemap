@@ -36,6 +36,26 @@
             }
             
         }
+        else if( count($queryParts) > 3 && $queryParts[1] == 'floors' && $queryParts[3] == 'rooms'){
+            $db = new RoomDb();
+            echo json_encode($db->GetByFloorId($queryParts[2])); 
+        }
+        else if($queryParts[1] == 'floors'){
+            $db = new FloorDB();
+
+            if(empty($queryParts[2])) 
+                echo json_encode($db->GetAllFloors()); 
+            else
+                echo json_encode($db->GetById($queryParts[2])); 
+        }
+        else if($queryParts[1] == 'rooms'){
+            $db = new RoomDB();
+
+            if(empty($queryParts[2]))
+                echo json_encode($db->GetAllRooms()); 
+            else 
+                echo json_encode($db->GetById($queryParts[2])); 
+        }
 
         //$db = new EmployeeDB();
 
