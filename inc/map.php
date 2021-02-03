@@ -36,7 +36,7 @@
     function post()
     {
         global $canEdit;
-        if(!$canEdit){
+        if(!$canEdit && $_POST['employeeId'] != Authorization::GetUserId()){
             echo 'unauthorized';
             return;
         }

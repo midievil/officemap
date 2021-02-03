@@ -167,8 +167,8 @@
                   </div>
         
                   <div class="buttons">
-                    <button type="button" class="btn btn-primary editable" onclick="editEmployee();">Сохранить</button>
-                    <button type="button" class="btn btn-danger editable" onclick="deleteEmployeeFromMap();">Убрать с карты</button>
+                    <button type="button" class="btn btn-primary" onclick="editEmployee();">Сохранить</button>
+                    <button type="button" class="btn btn-danger" onclick="deleteEmployeeFromMap();">Убрать с карты</button>
                   </div>
                 </form>
             </div>

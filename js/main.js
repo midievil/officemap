@@ -77,7 +77,7 @@ function pointClicked(id, ev) {
     $point = $("#point" + id);    
     $point.addClass('selected');
 
-    if(id == 'New'){
+    if(id == Constants.EmployeeIdNew){
         bindAddEmployeeForm();
     } else {
         var map = mapList.find(function(emp){
@@ -217,3 +217,9 @@ function getRequestParam(name){
     if(name=(new RegExp('[?&]'+encodeURIComponent(name)+'=([^&]*)')).exec(location.search))
        return decodeURIComponent(name[1]);
 }
+
+var Constants = {
+    EmployeeIdNew: "New",
+    RoomTypeWorking: "Working",
+    RoomTypeOutage: "Outage"
+};

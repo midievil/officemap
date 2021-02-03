@@ -31,7 +31,7 @@ function findRoomByCoordinates(x, y) {
 
 function findRoomById(id) {
     var room = roomsList.find(function(room){
-        return room.Id = id;
+        return room.Id == id;
     });
     return room;
 }

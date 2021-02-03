@@ -31,7 +31,7 @@ function buildRoomsFilter(){
         $ddl.empty();
         for(var i = 0; i < roomsList.length; i++) {
             var room = roomsList[i];
-            if(room.RoomType == "Working")
+            if(room.RoomType == Constants.RoomTypeWorking)
                 $ddl.append('<option value="' + room.Id + '" data-floor="' + room.FloorId + '">' + room.Name + '</option>')
         }
     }
@@ -106,6 +106,8 @@ function onMetaLoaded(isInitial){
 }
 
 function bindEmployeeForm(map, employee) {
+    $("div.buttons button").hide();
+
     $point = $("div.point.selected");
     
     var idHint = ""; //canEdit() ? (" (id: " + employee.Id + ")") : "";
@@ -141,7 +143,27 @@ function bindEmployeeForm(map, employee) {
 }
 
 function bindAddEmployeeForm() {
-    $("#ddlEmployee").val(notFoundMapId == null ? '' : notFoundMapId);
+
+    $("#aSkype").text('');
+    $("#aSkype").removeAttr('href');
+    $("#txtIP").prop("readonly", !canEdit());
+    $("div.buttons button").hide();
+
+    if(!canEdit()) {
+        $("#ddlEmployee").prop("disabled", true);
+        loadEmployeeById(userId, function(emp) {
+            $("#txtIP").val(emp.Ip);
+            bindAvatar(emp);
+
+            $("#aSkype").text(emp.Skype);
+            $("#aSkype").attr('href', 'skype:' + emp.Skype + '?chat');
+        });
+
+        $("#ddlEmployee").val(userId);            
+        $("div.buttons button").show();
+    }
+    else
+        $("#ddlEmployee").val(notFoundMapId == null ? '' : notFoundMapId);
 
     var x = $("#pointNew").attr('data-x');
     var y = $("#pointNew").attr('data-y');
@@ -153,9 +175,6 @@ function bindAddEmployeeForm() {
         $("#hEmployee").text('Добавить на карту');  // (' + x + ',' + y + ')');
     else
         $("#hEmployee").text('Добавить на карту');
-
-    $("#aSkype").text('');
-    $("#aSkype").removeAttr('href');
 
     $("#spanCoord").text((Math.round(x * 100) / 100) + ',' + (Math.round(y * 100) / 100))
 
@@ -183,6 +202,8 @@ function bindViewEmployeeForm(employeeId){
 
     $("#divSelectEmployee").hide();
     $("#divEmployeeDetails").show();
+
+    $("div.buttons button").hide();
 
     bindAvatar(employee);
 }
