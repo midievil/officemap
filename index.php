@@ -11,12 +11,14 @@
     if(stripos($queryString, BASE_URI, 0) === 0)
         $queryString = substr($queryString, strlen(BASE_URI));
 
-    if(stripos($queryString, '/') !== false){
+    if(stripos($queryString, '/') !== false)
+    {
         $parts = explode('/', $queryString);
         $queryString = $parts[0];
         $queryParams = $parts[1];
     }
 
+    $viewbag = array();
     $auth = new Authorization();
 
     if($queryString == 'api'){
@@ -26,11 +28,25 @@
         die;
     }
     
-    if($queryString == 'login' && !empty($_POST['login']) && !empty($_POST['password'])) {
-        if($auth->TryLogin($_POST['login'], $_POST['password'])){
+    if($queryString == 'login' && !empty($_POST['login'])) 
+    {
+        $viewbag['id'] = isset($_GET['id']) ? $_GET['id'] : (isset($_POST['id']) ? $_POST['id'] : "" );
+        $viewbag['login'] = $_POST['login'];
+        $viewbag['password'] = $_POST['password'];
+
+        if($auth->TryLogin($_POST['login'], $_POST['password']))
+        {
             $redirectUrl = BASE_URI.(!empty($_POST['id']) ? ('?id=' . $_POST['id']) : "");
             header("Location: $redirectUrl");
-        } else {            
+        }
+        else 
+        {
+            if(Authorization::IsInjection($_POST['login']) || Authorization::IsInjection($_POST['id']))
+            {
+                $viewbag['id'] = '';
+                $viewbag['login'] = '';
+                $viewbag['password'] = '';
+            }
             echo 'incorrect login';
         }
     }

@@ -62,9 +62,14 @@
             return false;
         }
 
-        public function TryLogin($login, $password) {
-            
-            $result = $this-> sendAuthPostRequest(
+        public function TryLogin($login, $password) 
+        {
+            if(Authorization::IsInjection($login))
+            {
+                return false;
+            }
+
+            $result = $this->sendAuthPostRequest(
                 'authorization', 
                 array(
                     "login" => $login,
@@ -158,6 +163,11 @@
                     return true;
             }
             return false;
+        }
+
+        public static function IsInjection($str)
+        {
+            return preg_match("/[<>*'=+]/", $str);
         }
     }
 ?>

@@ -28,10 +28,10 @@
               <form action="<?=BASE_URI?>login" method="POST" class="form-signin">
                 <img class="mb-4" src="https://my.mmtr.ru/logo1.png" alt="" width="150">
 
-                <input type="hidden" name="id" value="<?=isset($_GET['id']) ? $_GET['id'] : (isset($_POST['id']) ? $_POST['id'] : "" )?>"/>
+                <input type="hidden" name="id" value="<?=$viewbag['id']?>"/>
                 <div class="form-group">
                   <input type="login" name="login" class="form-control" id="tbEmail" aria-describedby="emailHelp" placeholder="Логин ММТР"
-                    value="<?=isset($_POST['login']) ? $_POST['login'] : ''?>">
+                    value="<?=isset($viewbag['login']) ? $viewbag['login'] : ''?>">
                   <input type="password" name="password" class="form-control" id="tbPassword" placeholder="Пароль">
                 </div>
                 <div class="form-group form-check">
