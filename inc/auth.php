@@ -137,7 +137,10 @@
         }
 
         public function GetUserId(){
-            return $_SESSION['user_id'];
+            $result = $_SESSION['user_id'];
+            //if($result == 14)
+            //    $result = 1;    //  TMP: TO TEST UNDER OTHER USER
+            return $result;
         }
 
         public static function CanEdit() {

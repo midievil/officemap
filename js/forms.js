@@ -10,13 +10,17 @@ function bindEmployeesSelector() {
 
     for(var i = 0; i < employeesList.length; i++) {
         var employee = employeesList[i];
-        
-        $ddl.append('<option value="' + employee.Id + '">' + employee.Name + '</div>');
+
+        if(canEdit() || managedIds.indexOf(employee.Id) != -1 || employee.Id == userId)
+        {        
+            $ddl.append('<option value="' + employee.Id + '">' + employee.Name + '</div>');
+        }
 
         var mapEntry = mapList.find(function(emp){
             return emp.Id == employee.Id;
         });
         var mapClass = mapEntry == null ? "not-on-map" : "on-map";
+
 
         $ul.append('<li id="li' + employee.Id + '" class="list-group-item emp' + employee.Id + ' ' + mapClass + ' role' + employee.KindOfActivityId + '" onclick="searchMap(' + employee.Id + ');" >' + employee.Name + '</li>');
     }
@@ -63,7 +67,7 @@ function onMetaLoaded(isInitial){
         buildFloorsFilter();
         buildRoomsFilter();
         
-        if(employeesList != null && mapList != null && devicesList != null)
+        if(employeesList != null && mapList != null && devicesList != null && managedIds != null)
         {
             isLocked = false;
 
@@ -106,7 +110,11 @@ function onMetaLoaded(isInitial){
 }
 
 function bindEmployeeForm(map, employee) {
-    $("div.buttons button").hide();
+    
+    if(canEdit() || (managedIds.indexOf(employee.Id) != -1))
+        $("div.buttons button").show();
+    else
+        $("div.buttons button").hide();
 
     $point = $("div.point.selected");
     
@@ -147,9 +155,9 @@ function bindAddEmployeeForm() {
     $("#aSkype").text('');
     $("#aSkype").removeAttr('href');
     $("#txtIP").prop("readonly", !canEdit());
-    $("div.buttons button").hide();
+    $("div.buttons button").show();
 
-    if(!canEdit()) {
+    if(!canEdit() && managedIds.length == 0) {
         $("#ddlEmployee").prop("disabled", true);
         loadEmployeeById(userId, function(emp) {
             $("#txtIP").val(emp.Ip);
@@ -160,7 +168,7 @@ function bindAddEmployeeForm() {
         });
 
         $("#ddlEmployee").val(userId);            
-        $("div.buttons button").show();
+        //$("div.buttons button").show();
     }
     else
         $("#ddlEmployee").val(notFoundMapId == null ? '' : notFoundMapId);

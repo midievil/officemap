@@ -4,6 +4,7 @@ $(document).ready(function(){
     loadEmployees();
     loadMap(true);
     loadDevices();
+    loadManagedIds();
 
     setEditables();
 

@@ -121,9 +121,21 @@ function deleteEmployee(id, onSuccess){
     });
 }
 
+function loadManagedIds(){
+    $.ajax({
+        url: '/employees/managed',
+        method: "GET",
+        success: function(result) {
+            managedIds = JSON.parse(result);
+            onMetaLoaded(true);
+        }
+    });
+}
+
 var isLocked = false;
 var floorsList = null;
 var roomsList = null;
 var employeesList = null;
 var mapList = null;
 var devicesList = null;
+var managedIds = null;

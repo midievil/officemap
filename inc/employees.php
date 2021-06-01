@@ -10,6 +10,12 @@
             global $queryParams;
             if(!empty($queryParams))
             {
+                if($queryParams == 'managed')
+                {
+                    echo json_encode(getManagedIds());
+                    die;
+                }
+
                 getById($queryParams);
                 die;
             }
@@ -45,5 +51,8 @@
         echo json_encode($result);
     }
 
-    
+    function getManagedIds() {
+        $db = new EmployeeDB();
+        return $db->GetManagedEmployeeIds(Authorization::GetUserId());
+    }
 ?>

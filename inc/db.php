@@ -246,5 +246,54 @@
 
             return null;          
         }
+
+        public function GetManagedEmployeeIds($headId) {
+            $result = mysqli_query($this->connection, "
+                SELECT  EmployeeId 
+                FROM	employees_on_departments eod
+                JOIN	employees e on e.Id = eod.EmployeeId 	
+                WHERE	eod.IsDeleted = 0 
+                        AND e.IsDeleted = 0
+                        AND e.IsDismissed = 0
+                        AND e.IsSwitchedOn = 1
+                        AND DepartmentId IN (
+                            SELECT	ID 
+                            FROM	company_departments cd
+                            WHERE	DepartmentHeadId = $headId 
+                                    AND IsDeleted = 0
+                        )
+            
+                ");
+
+            if($result) {
+                $ids = array();
+                while($row = mysqli_fetch_assoc($result)) {
+                    $ids[] = $row['EmployeeId'];
+                }
+                return $ids;
+            }
+
+            return null;
+        }
+
+        public function IsManagerOf($headId, $employeeId){
+            $result = mysqli_query($this->connection, "
+            SELECT count(eod.Id) as Cnt
+            FROM employees_on_departments eod
+            JOIN company_departments cd on cd.Id  = eod.DepartmentId 
+            WHERE	eod.EmployeeId = $employeeId 
+                    AND cd.DepartmentHeadId = $headId
+                    AND eod.IsDeleted = 0
+                    AND cd.IsDeleted  = 0
+            ");
+
+            if($result) {
+                if($row = mysqli_fetch_assoc($result)) {
+                    return $row["Cnt"] > 0;
+                }
+            }
+
+            return false;
+        }
     }
 ?>

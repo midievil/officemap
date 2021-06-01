@@ -36,25 +36,45 @@
     function post()
     {
         global $canEdit;
-        if(!$canEdit && $_POST['employeeId'] != Authorization::GetUserId()){
+
+        $userId = Authorization::GetUserId();
+        $employeeId = $_POST['employeeId'];
+
+        $empDb = new EmployeeDB();
+
+        if(!$canEdit && $employeeId != $userId && !$empDb->IsManagerOf($userId, $employeeId))
+        {
             echo 'unauthorized';
             return;
         }
 
         $db = new MapDB();
-        $emp = $db->GetEmployee($_POST['employeeId']);
+        $emp = $db->GetEmployee($employeeId);
         if(empty($emp)){
-            $db->AddEmployee($_POST['employeeId'], $_POST['ip'], $_POST['x'], $_POST['y'], $_POST['floor'], $_POST['room']);
+            $db->AddEmployee($employeeId, $_POST['ip'], $_POST['x'], $_POST['y'], $_POST['floor'], $_POST['room']);
         } else {
-            $db->UpdateEmployee($_POST['employeeId'], $_POST['ip'], $_POST['x'], $_POST['y'], $_POST['floor'], $_POST['room']);
+            $db->UpdateEmployee($employeeId, $_POST['ip'], $_POST['x'], $_POST['y'], $_POST['floor'], $_POST['room']);
         }
         echo "ok";
     }
 
     function delete(){
-        $id =  str_ireplace(BASE_URI.'map/', '', ($_SERVER[REQUEST_URI]));
+        $employeeId =  str_ireplace(BASE_URI.'map/', '', ($_SERVER[REQUEST_URI]));
+
+        global $canEdit;
+
+        $userId = Authorization::GetUserId();
+        
+        $empDb = new EmployeeDB();
+
+        if(!$canEdit && $employeeId != $userId && !$empDb->IsManagerOf($userId, $employeeId))
+        {
+            echo 'unauthorized';
+            return;
+        }
+
         $db = new MapDB();
-        $db->DeleteEmployeeFromMap($id);
+        $db->DeleteEmployeeFromMap($employeeId);
         die;
     }
 
