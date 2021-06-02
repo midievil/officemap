@@ -191,13 +191,37 @@
         }
     }
 
+    class ReportsDb extends BaseInnerDB
+    {
+        public function GetEmployeesCountByRoom()
+        {
+            $result = mysqli_query($this->connection, "
+                SELECT  em.room_id, r.name, r.description, count(em.id) employees_count
+                FROM    employees_map em 
+                JOIN    rooms r on r.id = em.room_id and r.is_active = true
+                JOIN    floors f on f.id = r.floor_id and f.is_active = true
+                GROUP BY em.room_id
+                ORDER BY r.name ");
+
+            if($result) {
+                $rows = array();
+                while($row = mysqli_fetch_assoc($result)) {
+                    $rows []= $row;
+                }
+                return $rows;
+            }
+
+            return null;
+        }
+    }
+
     class EmployeeDB extends BaseExternalDB
     {
         public function GetAllEmployees() {
 
             $result = mysqli_query($this->connection,
 			"
-                SELECT  e.Id, e.LastName, e.FirstName, e.UserIp, e.IsProjectManager, e.KindOfActivityId, a.Path as Avatar, Skype, Login
+                SELECT  e.Id, e.LastName, e.FirstName, e.UserIp, e.IsProjectManager, e.IsAdmin, e.KindOfActivityId, a.Path as Avatar, Skype, Login
                 FROM    employees e 
                 LEFT JOIN avatars a ON a.EmployeeId = e.Id AND a.IsDeleted = 0
                 WHERE   e.IsDismissed = 0 AND e.IsDeleted = 0 AND IsSwitchedOn = 1
@@ -217,7 +241,7 @@
 
         public function GetEmployeeByLoginPassword($login, $password) {
             $result = mysqli_query($this->connection, "
-                SELECT  e.Id, e.LastName, e.FirstName, e.UserIp, e.IsProjectManager, e.KindOfActivityId, a.Path as Avatar, Skype, Login
+                SELECT  e.Id, e.LastName, e.FirstName, e.UserIp, e.IsProjectManager, e.IsAdmin, e.KindOfActivityId, a.Path as Avatar, Skype, Login
                 FROM    employees e
                 LEFT JOIN avatars a ON a.EmployeeId = e.Id AND a.IsDeleted = 0
                 WHERE   (e.Login = '$login' OR e.Email='$login') AND TRUE");
@@ -233,7 +257,7 @@
 
         public function GetEmployeeById($id) {
             $result = mysqli_query($this->connection, "
-                SELECT  e.Id, e.LastName, e.FirstName, e.UserIp, e.IsProjectManager, e.KindOfActivityId, a.Path as Avatar, Skype, Login
+                SELECT  e.Id, e.LastName, e.FirstName, e.UserIp, e.IsProjectManager, e.IsAdmin, e.KindOfActivityId, a.Path as Avatar, Skype, Login
                 FROM    employees e
                 LEFT JOIN avatars a ON a.EmployeeId = e.Id AND a.IsDeleted = 0
                 WHERE   (e.Id = $id) AND TRUE");

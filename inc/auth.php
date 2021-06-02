@@ -49,11 +49,21 @@
                     array( "tokenInfo" => $token )
                 );
 
-                if($result->isSuccess){                
-                    $_SESSION['user_id'] = $result->object->id;
-                    $_SESSION['is_pm'] = false;
-                    //var_dump("ok");
-                    //die;
+                if($result->isSuccess){    
+                    $userId = $result->object->id;            
+                    $_SESSION['user_id'] = $userId;
+
+                    $db = new EmployeeDB();
+                    $emp = $db->GetEmployeeById($userId);
+
+                    $_SESSION['is_pm'] = $emp->IsProjectManager;
+                    $_SESSION['is_admin'] = $emp->IsAdmin;
+
+                    if($userId == 14)
+                    {
+                        
+                    }
+
                     return true;
                 }
             }
@@ -84,7 +94,8 @@
                 $db = new EmployeeDB();
                 $emp = $db->GetEmployeeByLoginPassword($login, $password);
                 $_SESSION['user_id'] = $emp->Id;
-                $_SESSION['is_pm'] = $emp->IsProjectManager;// && $emp->KindOfActivityId == 5;
+                $_SESSION['is_pm'] = $emp->IsProjectManager;
+                $_SESSION['is_admin'] = $emp->IsAdmin;
 
                 unset($_COOKIE['token']); 
                 setcookie("token", $result->object->userToken->tokenInfo, time()+60*60*24*30, '/', 'mmtr.ru');
@@ -105,7 +116,8 @@
                 $db = new EmployeeDB();
                 $emp = $db->GetEmployeeByLoginPassword($login, $password);
                 $_SESSION['user_id'] = $emp->Id;
-                $_SESSION['is_pm'] = $emp->IsProjectManager;// && $emp->KindOfActivityId == 5;
+                $_SESSION['is_pm'] = $emp->IsProjectManager;
+                $_SESSION['is_admin'] = $emp->IsAdmin;
 
                 if(isset($_POST["remember"])) {
                     setcookie('remember', 'true', time()+60*60*24*30);
@@ -144,15 +156,19 @@
         }
 
         public static function CanEdit() {
-            return Authorization::IsAdmin() || Authorization::IsProjectManager();;
+            return Authorization::IsMapAdmin() || Authorization::IsProjectManager();;
         }
 
-        public static function IsAdmin() {
+        public static function IsMapAdmin() {
             return isset($_SESSION['user_id']) && in_array($_SESSION['user_id'], Authorization::GetAdminIds());
         }
 
         public static function IsProjectManager(){
             return isset($_SESSION['is_pm']) && $_SESSION['is_pm'];
+        }
+
+        public static function IsAdmin(){
+            return isset($_SESSION['is_admin']) && $_SESSION['is_admin'];
         }
 
         private static function GetAdminIds(){

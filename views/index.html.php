@@ -10,7 +10,7 @@
     <title>MMTR office map</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="./dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/dist/css/bootstrap.min.css" rel="stylesheet">
     
     <!-- Custom styles for this template -->
     <link href="/css/main.css?v=<?=$scriptVersion?>" rel="stylesheet">
@@ -19,81 +19,11 @@
   <body>
 
   
-  <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
-    <div class="container">
-      <a class="navbar-brand mb-0 h1" href="#">Мой ММТР</a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav">
-          <li class="nav-item active">
-            <a class="nav-link" >Карта офиса</a>
-          </li>
-          
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="employeesMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              Сотрудники
-            </a>
-            <div class="dropdown-menu" aria-labelledby="employeesMenuLink">
-              <a class="dropdown-item" onclick="searchEmployee()">Поиск</a>
-            </div>
-          </li>
+  <?
+    $menuItem = 'index';
+    require('views/menu.html.php');
+  ?>
 
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="devicesMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              Принтеры
-            </a>
-            <div class="dropdown-menu" aria-labelledby="devicesMenuLink" id='divDevicesMenu'>
-              
-            </div>
-          </li>
-
-        </ul>
-      </div>
-    </div>
-</nav>
-
-
-    <!--nav class="site-header sticky-top py-1">
-      <div class="container d-flex flex-column flex-md-row justify-content-between">
-          <a class="navbar-brand" href="#">#MMTRMap</a>
-
-          <div class=" navbar-collapse" id="navbarNavDropdown">
-            <ul class="navbar-nav">
-
-              <li class="dropdown">
-                  <a class="nav-link dropdown-toggle" href="#" id="employeesMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Сотрудники
-                  </a>
-                  <div class="dropdown-menu" aria-labelledby="employeesMenuLink">
-                    <a class="dropdown-item" onclick='searchEmployee()'>Поиск</a>
-                  </div>
-                </li>
-                <li class="dropdown">
-                  <a class="nav-link dropdown-toggle" href="#" id="devicesMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Устройства
-                  </a>
-                </li>
-
-              <? if(Authorization::CanEdit()) { ?>
-                <li class="nav-item dropdown">
-                  <a class="nav-link dropdown-toggle" href="#" id="printMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Печать
-                  </a>
-                  <div class="dropdown-menu" aria-labelledby="printMenuLink">
-                    <a class="dropdown-item" onclick='printEmployeesList()'>Список сотрудников</a>
-                    <a class="dropdown-item" onclick='printMap()'>Карта</a>                  
-                  </div>
-                </li>
-              <? } ?>
-            </ul>
-          </div>
-
-        
-        <a class="py-2 d-none d-md-inline-block" href="<?=BASE_URI?>logout">Выход</a>
-      </div>
-    </nav-->
 
     <div class="position-relative overflow-scroll text-center">
         <div id='divFilter' class="col-md-5 mx-auto">
@@ -190,7 +120,7 @@
     <footer class="container py-5">
       <div class="row">
         <div class="col-12 col-md">
-          <small class="d-block mb-4 text-muted">&copy; 2018 <a onclick="searchMap(14);" href="#">Artem Sharypov</a></small>
+          <small class="d-block mb-4 text-muted">&copy; 2018-2012 <a onclick="searchMap(14);" href="#">Artem</a></small>
         </div>
       </div>
     </footer>
@@ -202,7 +132,7 @@
     
     <script src="/dist/js/jquery-3.3.1.min.js"></script>
     <script src="/dist/js/popper.min.js"></script>
-    <script src="/dist/js/bootstrap.min.js"></script>    
+    <script src="/dist/js/bootstrap.min.js"></script>
     <script src="/js/main.js?v=<?=$scriptVersion?>"></script>
     <script src="/js/api.js?v=<?=$scriptVersion?>"></script>
     <script src="/js/edit.js?v=<?=$scriptVersion?>"></script>

@@ -70,6 +70,7 @@
             $this->Ip = $row['UserIp'];
             $this->Avatar = $row['Avatar'];
             $this->IsProjectManager = $row['IsProjectManager'];
+            $this->IsAdmin = $row['IsAdmin'];
             $this->KindOfActivityId = $row['KindOfActivityId'];
             $this->Skype = $row['Skype'];
             $this->Login = $row['Login'];
@@ -83,6 +84,7 @@
         public $KindOfActivityId;
         public $Skype;
         public $Login;
+        public $IsAdmin;
     }
 
     class Device

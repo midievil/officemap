@@ -1,6 +1,6 @@
 <?php
 
-    $scriptVersion = '1.6';
+    $scriptVersion = '1.72';
 
     session_start();
 
@@ -38,6 +38,7 @@
         {
             $redirectUrl = BASE_URI.(!empty($_POST['id']) ? ('?id=' . $_POST['id']) : "");
             header("Location: $redirectUrl");
+            die;
         }
         else 
         {
@@ -47,7 +48,7 @@
                 $viewbag['login'] = '';
                 $viewbag['password'] = '';
             }
-            echo 'incorrect login';
+            //echo 'incorrect login';
         }
     }
 
@@ -70,12 +71,17 @@
         case 'map':
         case 'export':
         case 'devices':
+        case 'reports':
             require_once('inc/' . $queryString . '.php');
             return;
 
         case 'logout':
             $auth->Logout();
             header('Location: '.BASE_URI);
+            return;
+
+        case 'report':
+            require('views/report.html.php');
             return;
 
         default: 
