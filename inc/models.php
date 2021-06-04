@@ -24,6 +24,7 @@
             $this->X2 = $row['x2'];
             $this->Y2 = $row['y2'];
             $this->RoomType = Enums::$RoomTypes[$row['room_type']];
+            $this->EmployeesCount = $row['employees_count'];
         }
 
         public $Id;
@@ -35,6 +36,7 @@
         public $X2;
         public $Y2;
         public $RoomType;
+        public $EmployeesCount;
     }
 
     class EmployeeMap

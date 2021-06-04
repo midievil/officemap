@@ -53,11 +53,13 @@
     {
         public function GetAllRooms() {
             $result = mysqli_query($this->connection, "
-                SELECT  r.id, r.`name`, r.`description`, r.x1, r.y1, r.x2, r.y2, r.floor_id, r.room_type 
+                SELECT  r.id, r.`name`, r.`description`, r.x1, r.y1, r.x2, r.y2, r.floor_id, r.room_type, count(em.id) employees_count
                 FROM    rooms r
                 JOIN    floors f ON f.id = r.floor_id
+                LEFT JOIN employees_map em ON em.room_id = r.id
                 WHERE   r.is_active = TRUE
                         AND f.is_active = TRUE
+                GROUP BY r.id
                 ORDER BY r.`name`");
             if($result) {
                 $rooms = array();
@@ -73,12 +75,14 @@
 
         public function GetByFloorId($floorId) {
             $result = mysqli_query($this->connection, "
-                SELECT  r.id, r.`name`, r.`description`, r.x1, r.y1, r.x2, r.y2, r.floor_id, r.room_type 
+                SELECT  r.id, r.`name`, r.`description`, r.x1, r.y1, r.x2, r.y2, r.floor_id, r.room_type, count(em.id) employees_count
                 FROM    rooms r
                 JOIN    floors f ON f.id = r.floor_id
+                LEFT JOIN employees_map em ON em.room_id = r.id
                 WHERE   r.is_active = TRUE 
                         AND f.is_active = TRUE
-                        AND r.floor_id = $floorId
+                        AND r.floor_id = $
+                GROUP BY r.id
                 ORDER BY r.`name`");
             if($result) {
                 $rooms = array();
@@ -94,7 +98,7 @@
 
         public function GetById($id) {
             $result = mysqli_query($this->connection, "
-                SELECT  id, `name`, `description`, x1, y1, x2, y2, floor_id, room_type 
+                SELECT  id, `name`, `description`, x1, y1, x2, y2, floor_id, room_type, 0 AS employees_count
                 FROM    rooms
                 WHERE   id = $id");
             if($result) {

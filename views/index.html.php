@@ -141,6 +141,7 @@
     <script src="/js/screen.js?v=<?=$scriptVersion?>"></script>
     <script src="/js/print.js?v=<?=$scriptVersion?>"></script>
     <script src="/js/pacman.js?v=<?=$scriptVersion?>"></script>
+    <script src="https://kit.fontawesome.com/da05c43429.js" crossorigin="anonymous"></script>
     <script>
       var scriptVersion = "<?=$scriptVersion?>";
       var avatarsUri = '<?=AVATARS_URI?>';

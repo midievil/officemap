@@ -153,6 +153,11 @@ div.room-description {
   position: absolute;
   z-index: 0;
   font-weight: bold;  
+  font-size: 1.2em;
+}
+
+div.room-description i{
+  font-size: 0.9em;
 }
 
 div.room-description div.name{

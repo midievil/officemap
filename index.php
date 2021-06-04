@@ -1,6 +1,6 @@
 <?php
 
-    $scriptVersion = '1.72';
+    $scriptVersion = '1.73';
 
     session_start();
 
