@@ -2,6 +2,13 @@ body{
   font-size: 16px;
 }
 
+.logo-style {
+  color: #DD2629;
+  font: Roboto;
+  font-weight: 500;
+  font-size: 16px;
+}
+
 .container {
   max-width: 960px;
 }
