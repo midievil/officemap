@@ -52,11 +52,15 @@
     class RoomDB extends BaseInnerDB
     {
         public function GetAllRooms() {
+
+            $db = new EmployeeDB();
+            $dismissedExpression = implode(',', $db->GetDismissedIds());
+
             $result = mysqli_query($this->connection, "
                 SELECT  r.id, r.`name`, r.`description`, r.x1, r.y1, r.x2, r.y2, r.floor_id, r.room_type, count(em.id) employees_count
-                FROM    rooms r
-                JOIN    floors f ON f.id = r.floor_id
-                LEFT JOIN employees_map em ON em.room_id = r.id
+                FROM    officemapdb.rooms r
+                JOIN    officemapdb.floors f ON f.id = r.floor_id
+                LEFT JOIN officemapdb.employees_map em ON em.room_id = r.id AND em.employee_id NOT IN ($dismissedExpression)
                 WHERE   r.is_active = TRUE
                         AND f.is_active = TRUE
                 GROUP BY r.id
@@ -74,11 +78,14 @@
         }
 
         public function GetByFloorId($floorId) {
+            $db = new EmployeeDB();
+            $dismissedExpression = implode(',', $db->GetDismissedIds());
+
             $result = mysqli_query($this->connection, "
                 SELECT  r.id, r.`name`, r.`description`, r.x1, r.y1, r.x2, r.y2, r.floor_id, r.room_type, count(em.id) employees_count
                 FROM    rooms r
                 JOIN    floors f ON f.id = r.floor_id
-                LEFT JOIN employees_map em ON em.room_id = r.id
+                LEFT JOIN employees_map em ON em.room_id = r.id AND em.employee_id NOT IN ($dismissedExpression)
                 WHERE   r.is_active = TRUE 
                         AND f.is_active = TRUE
                         AND r.floor_id = $
@@ -199,11 +206,15 @@
     {
         public function GetEmployeesCountByRoom()
         {
+            $db = new EmployeeDB();
+            $dismissedExpression = implode(',', $db->GetDismissedIds());
+            
             $result = mysqli_query($this->connection, "
                 SELECT  em.room_id, r.name, r.description, count(em.id) employees_count
                 FROM    employees_map em 
                 JOIN    rooms r on r.id = em.room_id and r.is_active = true
                 JOIN    floors f on f.id = r.floor_id and f.is_active = true
+                WHERE   em.employee_id NOT IN ($dismissedExpression)
                 GROUP BY em.room_id
                 ORDER BY r.name ");
 
@@ -322,6 +333,19 @@
             }
 
             return false;
+        }
+
+        public function GetDismissedIds() {
+            $result = mysqli_query($this->connection, "
+            SELECT Id FROM employees e WHERE IsDismissed = true;");
+
+            if($result) {
+                $ids = array();
+                while($row = mysqli_fetch_assoc($result)) {
+                    $ids[] = $row['Id'];
+                }
+                return $ids;
+            }
         }
     }
 ?>
