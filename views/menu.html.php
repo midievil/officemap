@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
     <div class="container">
-      <a class="navbar-brand pt-0 pb-0" href="">
+      <a class="navbar-brand pt-0 pb-0" href="/">
         <img src="/img/logo.svg" width="130" alt="" class="mr-2">
         <img src="/img/logo_ellipse.svg" width="6" alt="">
         <span class="logo-style">Карта офиса</span>
