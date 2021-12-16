@@ -1,13 +1,16 @@
 var clicks = 0;
 
-$(document).ready(function(){
+$(document).ready(function() {
+
+    var clicksLimit = 10;
+
     $(document).on('click', function(ev){
         if(ev.target.id == 'imgPlan')
             clicks++;
         else
             clicks = 0;
 
-        if(clicks >= 10) {
+        if(clicks >= clicksLimit) {
             if(t != null)
                 window.clearTimeout(t);
             clicks = 0;
@@ -29,7 +32,7 @@ function pacman(){
         mapList[i].IsEaten = false;
     
 
-    y=68;   
+    y=10;   
     x=10;
     keyPressed(right);
 
@@ -49,19 +52,20 @@ function move(){
     x = x + dx;
     y = y + dy;
 
-    if(x>100) x=0;
-    if(x<0) x=100;
-    if(y>100) y=0;
-    if(y<0) y=100;
+    var w = $("#imgPlan")[0].width;
+    var h = $("#imgPlan")[0].height;
 
-    $pacman.css({ left: x + '%', top: y + '%'});
+    if(x>w) x=0;
+    if(x<0) x=w;
+    if(y>h) y=0;
+    if(y<0) y=h;
+
+    $pacman.css({ left: x + 'px', top: y + 'px'});
     eat();
 
     t = window.setTimeout(() => {
         move();
     }, 100);
-
-    
 }
 
 var eatRate = 3;
@@ -72,19 +76,41 @@ function eat(){
         return;
     eatCycle = 0;
 
-    var floorId = getCurrentFloorId();
-    var map = mapList.find(function(emp){
-        return !emp.IsEaten && emp.FloorId == floorId && Math.abs(emp.X - x)<1 && Math.abs(emp.Y - y)<1;
-    });
+    var $allPoints = $(".point");
+    var eatenId = null;
+    for(var i = 0; i< $allPoints.length; i++){
+        var point = $allPoints[i];
+        var dX = Math.abs($pacman[0].getBoundingClientRect().left - point.getBoundingClientRect().left);
+        var dY = Math.abs($pacman[0].getBoundingClientRect().top - point.getBoundingClientRect().top);
+    
+        if(dX < 16 && dY < 16) {
+            eatenId = point.getAttribute('data-id');
+            break;
+        }
+    }    
+
+    var map = findEmployeeById(eatenId);
     
     if(typeof map !== 'undefined'){
         map.IsEaten = true;
-        $point = $("#point"+map.Id);
-        $point.hide();
+        $point = $("#point" + map.Id);
+        $point.remove();
         points++;
         $("div.points span.pts").text(points);
 
-        if($point.hasClass("you")){
+        var isOver = false;
+        if(($(".point:not(.you)").length) == 0)
+        {
+            isOver = true
+            log('You won!');
+        }
+        else if($point.hasClass("you"))
+        {
+            isOver = true;
+            log('You lose!');
+        }
+
+        if(isOver){
             window.clearTimeout(t);
             $pacman.remove();
             drawMap();
@@ -95,22 +121,22 @@ function eat(){
 function keyPressed(keyCode){
     switch(keyCode){
         case up:
-            dy = -0.5;
+            dy = -5;
             dx = 0;
             $pacman.rotate(-90);
             break;
         case down:
-            dy = 0.5;
+            dy = 5;
             dx = 0;
             $pacman.rotate(90);
             break;
         case left:
-            dx = -0.5;
+            dx = -5;
             dy = 0;
             $pacman.rotate(-180);
             break;
         case right:
-            dx = 0.5;
+            dx = 5;
             dy = 0;
             $pacman.rotate(0);
             break;
@@ -120,7 +146,12 @@ function keyPressed(keyCode){
     return true;
 }
 
-var dx=0.5;
+function log(text)
+{
+    $(".logo-style").text(text);
+}
+
+var dx=5;
 var dy=0;
 var x=10;
 var y=68;
